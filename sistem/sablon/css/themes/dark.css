@@ -1,0 +1,158 @@
+body{background-color:#222;color:#ccc}
+a{color:#2196f3}
+a:hover,a:focus{color:#2270af}
+h1 small,h2 small,h3 small,h4 small,h5 small,h6 small,.h1 small,.h2 small,.h3 small,.h4 small,.h5 small,.h6 small,h1 .small,h2 .small,h3 .small,h4 .small,h5 .small,h6 .small,.h1 .small,.h2 .small,.h3 .small,.h4 .small,.h5 .small,.h6 .small{color:#ccc}
+.card{background-color:#333}
+.card .body{color:#ccc}
+.form-control{color:#ddd;background-color:#333}
+.form-group .form-line{border-bottom:1px solid #444}
+.btn-default{color:#ddd}
+.btn-default:active:hover,.btn-default.active:hover,.open > .dropdown-toggle.btn-default:hover,.btn-default:active:focus,.btn-default.active:focus,.open > .dropdown-toggle.btn-default:focus,.btn-default:active.focus,.btn-default.active.focus,.open > .dropdown-toggle.btn-default.focus{color:#ddd;background-color:#333;border-color:#444}
+.btn-default,.btn-default:hover,.btn-default:active,.btn-default:focus{background-color:#333!important}
+.input-group .input-group-addon .material-icons{color:#ddd}
+.sidebar{background:#222}
+.sidebar .menu .list a{color:#ddd}
+.sidebar .menu .list a span{color:#ccc}
+.sidebar .legal,.bg-theme-2{background-color:#222!important}
+.sidebar .legal{border-top:1px solid #333}
+::-webkit-scrollbar{background-color:#222}
+.right-sidebar{background-color:#222!important}
+.nav-tabs li.active a{color:#ccc!important}
+.nav-tabs > li.active > a,.nav-tabs > li.active > a:hover,.nav-tabs > li.active > a:focus{color:#ddd;background-color:#222;border:1px solid #333}
+.right-sidebar .nav-tabs li{background-color:#333}
+.nav-tabs > li > a:before {border-bottom: 2px solid #555}
+.nav-tabs{border-bottom:2px solid #333}
+.demo-choose-skin li.active{background-color:#333}
+.demo-choose-skin li{border-bottom:1px solid #333}
+.demo-choose-skin li:hover{background-color:#333}
+.m-alert,.m-alert a{color:#ddd}
+.mc_console{background-color:#333}
+.dropdown-menu{background-color:#333}
+.dropdown-menu .header{border-bottom:1px solid #444}
+.dropdown-menu ul.menu li{border-bottom:1px solid #444}
+.dropdown-menu ul.menu .menu-info h4{color:#ddd}
+.dropdown-menu ul.menu .icon-circle{color:#333}
+.dropdown-menu .footer a{border-top:1px solid #444}
+.dropdown-menu > li > a{color:#bbb}
+.dropdown-menu > li > a:hover,.dropdown-menu > li > a:focus{color:#ddd}
+.dropdown-menu ul.menu li a:hover{background-color:#444}
+.dropdown-menu .divider{background-color:#444}
+.dropdown-menu > li > a:hover,.dropdown-menu > li > a:focus{color:#ddd;background-color:#444}
+.settings-head,.settings-body,.settings-footer{background-color:#333}
+.btn-link{color:#ddd}
+.btn-link:active,.btn-link:focus{color:#ddd}
+.btn-link:hover{color:#ddd;background-color:#444}
+.bootstrap-tagsinput{background-color:#333!important}
+.setting-list{border-top:1px dotted #444;background-color:#333;color:#ddd}
+.btn:hover,.btn:focus,.btn.focus{color:#eee;background-color:#444}
+.file_loader {background-color: rgba(50,50,50.5)}
+.panel-default{border-color:#444}
+.panel{background-color:#333}
+.panel-default > .panel-heading{color:#ddd}
+.switch label .lever:after{background-color:#999}
+.bootstrap-select .dropdown-menu li.selected a{background-color:#444!important;color:#eee!important}
+.bootstrap-select .dropdown-menu .active a{color:#eee!important}
+.bootstrap-select .dropdown-menu .notify{background-color:#555!important;color:#fff!important}
+.thumbnail{background-color:#333;border:1px solid #444}
+.thumbnail .caption{color:#ccc}
+.mc_tema_gorsel{opacity:.8}
+.card .header h2{color:#ccc}
+.dropzone{border:2px dashed rgba(120,120,120,0.3);background:#333}
+.table tbody tr td,.table tbody tr th{border-top:1px solid #444;border-bottom:1px solid #444}
+.ms-container .ms-selectable,.ms-container .ms-selection{background:#333;color:#ddd}
+.ms-container .ms-list{border:1px solid #444}
+.ms-container .ms-selectable li.ms-elem-selectable,.ms-container .ms-selection li.ms-elem-selection{border-bottom:1px #444 solid;color:#ddd}
+.ms-container .ms-selectable li.ms-hover,.ms-container .ms-selection li.ms-hover{color:#ccc;background-color:#444}
+.fr-box.fr-basic .fr-wrapper{background:#333}
+.fr-box.fr-basic .fr-element{color:#ddd}
+.modal-content{background-color:#333}
+.mc_klasor_list .oge:hover,.m_klasor_list .oge:hover{background-color:#444}
+.mc_klasor_list .oge:focus,.m_klasor_list .oge:focus{border-color:#444}
+.col-blue-grey{color:#ccc!important}
+.breadcrumb li a{color:#ccc}
+.mc_tema_mod{border-bottom:1px solid #444}
+.mc_apl{border:1px solid #444}
+.mc_muzikc-pl-i.active{background:rgba(0,0,0,0.3)}
+.mc_muzikc-pb-pointer{background:#eee}
+.progress {background-color: #555}
+pre {color: #ccc; background-color: #111;border: 1px solid #666}
+.info-box .icon i{color:#ddd}
+.btn-warning,.btn-warning:hover,.btn-warning:active,.btn-warning:focus{background-color:#ff9600!important}
+.btn-danger,.btn-danger:hover,.btn-danger:active,.btn-danger:focus{background-color:#c5261a!important}
+.btn-info,.btn-info:hover,.btn-info:active,.btn-info:focus{background-color:#0084ab!important}
+.btn-success,.btn-success:hover,.btn-success:active,.btn-success:focus{background-color:#2b982b!important}
+.btn-primary,.btn-primary:hover,.btn-primary:active,.btn-primary:focus{background-color:#1f91f3!important}
+.bg-pink{background-color:#c51451!important;color:#fff}
+.bg-light-green{background-color:#76b132!important;color:#fff}
+.bg-cyan{background-color:#0096a9!important;color:#fff}
+.bg-orange{background-color:#d27e04!important;color:#fff}
+.bg-red{background-color:#F44336!important;color:#fff}
+.bg-purple{background-color:#9C27B0!important;color:#fff}
+.bg-deep-purple{background-color:#673AB7!important;color:#fff}
+.bg-indigo{background-color:#3F51B5!important;color:#fff}
+.bg-blue{background-color:#2196F3!important;color:#fff}
+.bg-light-blue{background-color:#03A9F4!important;color:#fff}
+.bg-teal{background-color:#009688!important;color:#fff}
+.bg-green{background-color:#4CAF50!important;color:#fff}
+.bg-lime{background-color:#CDDC39!important;color:#fff}
+.bg-yellow{background-color:#ffe821!important;color:#fff}
+.bg-amber{background-color:#FFC107!important;color:#fff}
+.bg-deep-orange{background-color:#FF5722!important;color:#fff}
+.bg-brown{background-color:#795548!important;color:#fff}
+.bg-grey{background-color:#9E9E9E!important;color:#fff}
+.bg-blue-grey{background-color:#607D8B!important;color:#fff}
+.bg-black{background-color:#000!important;color:#fff}
+.bg-white{background-color:#fff!important;color:#555}
+.col-red{color:#F44336!important}
+.col-pink{color:#c51451!important}
+.col-purple{color:#9C27B0!important}
+.col-deep-purple{color:#673AB7!important}
+.col-indigo{color:#3F51B5!important}
+.col-blue{color:#2196F3!important}
+.col-light-blue{color:#03A9F4!important}
+.col-cyan{color:#0096a9!important}
+.col-teal{color:#009688!important}
+.col-green{color:#4CAF50!important}
+.col-light-green{color:#76b132!important}
+.col-lime{color:#CDDC39!important}
+.col-yellow{color:#ffe821!important}
+.col-amber{color:#FFC107!important}
+.col-orange{color:#d27e04!important}
+.col-deep-orange{color:#FF5722!important}
+.col-brown{color:#795548!important}
+.col-grey{color:#9E9E9E!important}
+.col-blue-grey{color:#607D8B!important}
+.col-black{color:#000!important}
+.col-white{color:#fff!important}
+.mcd_gd > div {background-color: #333}
+.mcd_baslik {background-color: rgba(0, 0, 0, 0.8);color: #ddd}
+.list-group-item {background-color: #333;border: 1px solid #444}
+.mc_profil_solbilgiler {border-left: 1px solid #444;border-right: 1px solid #444}
+a.list-group-item, button.list-group-item {color: #ddd}
+.bootstrap-select{border-bottom:1px solid #444!important}
+.jsmc-log-el{color:#aaa;}
+.lsx-emojipicker-container {background: #333 !important}
+ul.lsx-emojipicker-tabs {background-color: #222!important;border-top: 1px solid #444!important;}
+.lsx-emojipicker-container:after {border-color: #222222 transparent transparent transparent !important;}
+ul.lsx-emojipicker-tabs li.selected { border-bottom: 2px solid #444 !important;}
+.panel-group .panel-heading + .panel-collapse > .panel-body, .panel-group .panel-heading + .panel-collapse > .list-group {
+    border-top: 1px solid #444;
+}
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #383838;
+}
+.table-hover > tbody > tr:hover {
+    background-color: #444;
+}
+.table-bordered tbody tr td, .table-bordered tbody tr th {
+    border: 1px solid #444;
+}
+.table-bordered tbody tr td{
+    font-size: .9em;
+}
+.table-bordered, .table-bordered thead tr th {
+    border: 1px solid #444;
+}
+.btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default {
+    color: #a6a6a6;
+}

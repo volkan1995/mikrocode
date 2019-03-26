@@ -1,0 +1,38 @@
+.bg-theme, .navbar{background-color:#673AB7}
+.navbar-brand, .col-theme-1{color:#fff}
+.navbar-brand:hover{color:#fff}
+.navbar-brand:active{color:#fff}
+.navbar-brand:focus{color:#fff}
+.nav > li > a{color:#fff}
+.nav > li > a:hover{background-color:transparent}
+.nav > li > a:focus{background-color:transparent}
+.nav .open > a, .bg-theme-1{background-color:transparent}
+.nav .open > a:hover{background-color:transparent}
+.nav .open > a:focus{background-color:transparent}
+.bars{color:#fff}
+.sidebar .menu .list li.active{background-color:transparent}
+.sidebar .menu .list li.active > :first-child i,.sidebar .menu .list li.active > :first-child span, .setting-list:hover{color:#673AB7}
+.sidebar .menu .list .toggled{background-color:transparent}
+.sidebar .menu .list .ml-menu{background-color:transparent}
+.sidebar .legal, .bg-theme-2{background-color:#fff}
+.sidebar .legal .copyright a{color:#673AB7!important}
+.sidebar .legal .setting_btn, .col-theme{color:#673AB7}
+.sidebar .user-info, .label-info{background-color:#673AB7}
+.setting-list.active{background-color:#673AB7;color:#fff}
+.btn-theme{background-color:#673AB7;color:#fff!important}
+.btn-theme:hover, .btn-theme:focus{}
+.switch label input[type=checkbox]:checked:not(:disabled) ~ .lever.switch-col-theme:active:after {box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4), 0 0 0 15px rgba(103, 58, 183, 0.1); }
+.switch label input[type=checkbox]:checked + .lever.switch-col-theme {background-color: rgba(103, 58, 183, 0.5);}
+.switch label input[type=checkbox]:checked + .lever.switch-col-theme:after {background-color: #673AB7;}
+[type="checkbox"]:checked.chk-col-theme + label:before {border-right: 2px solid #673AB7; border-bottom: 2px solid #673AB7}
+.form-group .form-line:after {border-bottom: 2px solid #673AB7}
+*::-webkit-scrollbar-thumb, .mc_muzikc-pl::-webkit-scrollbar{background-color: #673AB7}
+.mc_apl-bar-played {background: -webkit-linear-gradient(left,#fff,#673AB7)}
+.mc_apl-playing .mc_apl-bar-played::after{border:2px solid #673AB7}
+.mc_apl-volume-adjust > div{background-color:#ddd}
+.mc_apl-volume-adjust div div{background-color:#673AB7}
+.mc_apl-playpause{background:rgba(103, 58, 183,0);border:1px solid #673AB7}
+.mc_apl-playpause:hover,.mc_liste_secili .oge, .mc_listeler .mc_liste_secili{background:rgba(103, 58, 183,0.1)}
+.mc_apl-playpause, .dd-handle{color:#673AB7}
+.mc_range_s::-webkit-slider-thumb {background: #673AB7;-webkit-appearance: none;appearance: none;width: 25px;height: 25px;border-radius: 50%;cursor: pointer}
+.mc_range_s::-moz-range-thumb {background: #673AB7;width: 25px;height: 25px; border-radius: 50%;cursor: pointer}

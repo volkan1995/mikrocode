@@ -1,0 +1,22 @@
+#js-mobile-console{float: left; width: 100%; margin: 10px 0;}
+#jsmc-log{max-height: 96px;overflow-y: auto;font-size: .9em}
+#jsmc-input-container{position:relative}
+#jsmc-input{width:100%;border:none;}
+#jsmc-button{margin-bottom: 2px;}
+.jsmc-log-el{padding: 1px 2px;}
+.jsmc-log-error .jsmc-log-text{color:#f11f1f}
+.jsmc-log-command .jsmc-log-text{color:#009ee4}
+.jsmc-log-target{color:#7979ef}
+.jsmc-log-target{clear:both}
+#jsmc-content{clear:both}
+#jsmc-collapse{cursor:pointer;margin-right: 5px; margin-bottom: 2px;}
+#jsmc-clear{cursor:pointer;float: right;margin-bottom: 2px;}
+#jsmc-commands-container{background:#FFF;display:none}
+.jsmc-command-wrapper{border-bottom:1px solid #808080;padding:0 14px;cursor:pointer}
+.jsmc-command:last-child{border-bottom:0}
+.mc_console{
+    padding: 0px 10px 0 10px;
+    box-shadow: 0px -1px 10px 1px rgba(0,0,0,0.1);
+    width: 100%;
+    float: left;
+}

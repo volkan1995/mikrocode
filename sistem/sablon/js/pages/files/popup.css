@@ -1,0 +1,51 @@
+.no_pre a{vertical-align:middle}
+.mc_klasor_list{width:20%;float:left;position:relative}
+.mc_klasor_list .oge{text-align:center;display:block;height:120px;margin:7px;padding:10px;border: 1px dotted transparent;}
+.mc_klasor_list .oge:hover{text-decoration:none}
+.mc_klasor_list .oge:focus{text-decoration:none;background-color:transparent}
+.mc_klasor_list .sag_menu{position:absolute; top: 10px; right: 10px; margin: 0; padding: 0;}
+.mc_klasor_list .sag_menu i{color:#f7b14a;line-height: 35px;}
+.ust_sag_menu{position:absolute;list-style:none;top: 9px;right: 9px;margin: 0;padding: 0;}
+.mc_klasor_list .dosya_isim{text-overflow:ellipsis;white-space:nowrap;overflow:hidden;font-size:14px}
+#mc_dosya_agac{padding-right: 90px;}
+.mc_klasor_list .dosya_simge{margin-bottom:7px}
+.mc_klasor_list .dosya_simge div{line-height: 70px}
+.mc_klasor_list .dosya_simge i{font-size:65px;color:#f7b14a}
+.mc_klasor_list .dosya_simge img{max-width:100%;max-height:70px}
+.mc_dosya_sol {float: left;width: 100%;max-height: 320px; overflow-x: hidden;  overflow-y: auto;}
+.mc_dosya_sag {display: none;float: right;margin: 7px 0;padding: 0 0 10px 10px; min-height: 190px}
+.mc_sag_iptal {display: none}
+.mc_hata_cizgi{border:0!important;background-image:linear-gradient(to bottom right,transparent calc(50% - 1px),red,transparent calc(50% + 1px))}
+.mc_dosya_ust{    border-bottom: 2px dotted #ccc;
+margin-bottom: 15px;
+float: left;
+width: 100%;
+padding-bottom: 15px;}
+.mc_dosya_sol_dar {width: 75%;}
+.mc_dosya_sol_dar .mc_klasor_list {width: 25%;}    
+.mc_dosya_sag_acik{display: inline; width: 25%}
+.mc_dosyasil_i {float: left; font-size: 20px; margin-right: 5px; cursor: pointer;}
+.mc_dosyabaslik_b { line-height: 20px; }
+
+@media only screen and (max-width: 991px) {
+    .mc_klasor_list{width: 25%;}
+    .mc_dosya_sol_dar .mc_klasor_list {width: 33.333%;}
+    .mc_dosya_sol_dar {width: 70%}  
+    .mc_dosya_sag_acik{width: 30%}
+}
+@media only screen and (max-width: 768px) {
+    .mc_klasor_list{width: 33.33%;}
+    .mc_dosya_sol_dar .mc_klasor_list{width: 50%;}
+    .mc_dosya_sol_dar {width: 65%}  
+    .mc_dosya_sag_acik{width: 35%}
+}
+@media only screen and (max-width: 540px) {
+    .mc_klasor_list{width: 50%;}
+    .mc_dosya_sol_dar .mc_klasor_list{width: 100%;}
+    .mc_dosya_sol_dar {width: 50%}  
+    .mc_dosya_sag_acik{width: 50%}
+}    
+@media only screen and (max-width: 400px) {
+    .mc_dosya_sol_dar {display: none;}  
+    .mc_dosya_sag_acik{width: 100%}
+}

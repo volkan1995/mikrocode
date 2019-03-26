@@ -1,0 +1,38 @@
+.bg-theme, .navbar{background-color:#FF5722}
+.navbar-brand, .col-theme-1{color:#fff}
+.navbar-brand:hover{color:#fff}
+.navbar-brand:active{color:#fff}
+.navbar-brand:focus{color:#fff}
+.nav > li > a{color:#fff}
+.nav > li > a:hover{background-color:transparent}
+.nav > li > a:focus{background-color:transparent}
+.nav .open > a, .bg-theme-1{background-color:transparent}
+.nav .open > a:hover{background-color:transparent}
+.nav .open > a:focus{background-color:transparent}
+.bars{color:#fff}
+.sidebar .menu .list li.active{background-color:transparent}
+.sidebar .menu .list li.active > :first-child i,.sidebar .menu .list li.active > :first-child span, .setting-list:hover{color:#FF5722}
+.sidebar .menu .list .toggled{background-color:transparent}
+.sidebar .menu .list .ml-menu{background-color:transparent}
+.sidebar .legal, .bg-theme-2{background-color:#fff}
+.sidebar .legal .copyright a{color:#FF5722!important}
+.sidebar .legal .setting_btn, .col-theme{color:#FF5722}
+.sidebar .user-info, .label-info{background-color:#FF5722}
+.setting-list.active{background-color:#FF5722;color:#fff}
+.btn-theme{background-color:#FF5722;color:#fff!important}
+.btn-theme:hover, .btn-theme:focus{}
+.switch label input[type=checkbox]:checked:not(:disabled) ~ .lever.switch-col-theme:active:after {box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4), 0 0 0 15px rgba(255, 152, 0, 0.1); }
+.switch label input[type=checkbox]:checked + .lever.switch-col-theme {background-color: rgba(255, 152, 0, 0.5);}
+.switch label input[type=checkbox]:checked + .lever.switch-col-theme:after {background-color: #FF5722;}
+[type="checkbox"]:checked.chk-col-theme + label:before {border-right: 2px solid #FF5722; border-bottom: 2px solid #FF5722}
+.form-group .form-line:after {border-bottom: 2px solid #FF5722}
+*::-webkit-scrollbar-thumb, .mc_muzikc-pl::-webkit-scrollbar{background-color: #FF5722}
+.mc_apl-bar-played {background: -webkit-linear-gradient(left,#fff,#FF5722)}
+.mc_apl-playing .mc_apl-bar-played::after{border:2px solid #FF5722}
+.mc_apl-volume-adjust > div{background-color:#ddd}
+.mc_apl-volume-adjust div div{background-color:#FF5722}
+.mc_apl-playpause{background:rgba(255, 152, 0,0);border:1px solid #FF5722}
+.mc_apl-playpause:hover,.mc_liste_secili .oge, .mc_listeler .mc_liste_secili{background:rgba(255, 152, 0,0.1)}
+.mc_apl-playpause, .dd-handle{color:#FF5722}
+.mc_range_s::-webkit-slider-thumb {background: #FF5722;-webkit-appearance: none;appearance: none;width: 25px;height: 25px;border-radius: 50%;cursor: pointer}
+.mc_range_s::-moz-range-thumb {background: #FF5722;width: 25px;height: 25px; border-radius: 50%;cursor: pointer}

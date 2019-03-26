@@ -1,0 +1,3 @@
+<?php
+
+include 'yukle.php';

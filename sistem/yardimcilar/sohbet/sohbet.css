@@ -1,0 +1,15 @@
+.mc_sohbet_alan{ position: fixed; right: 0; bottom: 0; padding: 0 5px; margin: 0;}
+.mc_sohbet_alan > .panel-group > .panel{ width: 265px; float: left;}
+.mc_sohbet_mesajlar{width:100%;padding:5px 0;height:280px;overflow:hidden;overflow-y:auto; color: inherit}
+.mc_sohbet_mesaj{max-width: 80%;margin: 2px 0; padding: 8px 10px;border-radius: 15px;border: 1px solid;font-size: 0.95em;line-height: 1.25em;word-wrap:break-word}
+.mc_sohbet_left b{display: block;font-size: .8em;max-width: 80%;padding-left: 1px;}
+.mc_sohbet_left{float:left; width:100%;margin: 3px 0;}
+.mc_sohbet_right{float:right; width:100%;margin: 3px 0;}
+.mc_sohbet_left .mc_sohbet_mesaj{border-top-left-radius: 0;float: left;border-color: rgba(178, 235, 242, .4);background-color: rgba(224, 247, 250, .4)}
+.mc_sohbet_right .mc_sohbet_mesaj{border-bottom-right-radius: 0;float: right;border-color: rgba(197, 225, 165, 0.4);background-color: rgba(220, 237, 200, .4)}
+.mc_sohbet_form{width:100%;position: relative;}
+.mc_sohbet_form textarea{max-width:100%;min-width:100%;max-height:80px;min-height:30px;resize: none;padding-right: 44px}
+.mc_sohbet_form input{float:right;border:0;background-color:#8BC34A;color:#fff;width:68px;height:41px}
+.mc_sohbet_e_btn{ position: absolute;right: 0;line-height: 42px;top: 0;background-color: transparent; border-left: 1px solid #444; padding: 4px; font-size: 1.5em; bottom: 0;cursor: pointer;}
+.mc_sohbet_left small{text-align: left;width: 100%; padding-left: 8px;float: left;font-size: .7em;}
+.mc_sohbet_right small{text-align: right;width: 100%; padding-right: 8px;float: right;font-size: .7em;}
