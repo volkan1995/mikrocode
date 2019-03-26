@@ -1,5 +1,4 @@
 <?php
-
 function mc_kategoriler($a = array(), $f = false) {
     global $m_vt;
     $by = null;
@@ -75,7 +74,7 @@ function mc_kategoriler($a = array(), $f = false) {
 
 function mc_editor($t = "", $id = null) {
     if (empty($id)) {
-        $id = "m_editor";
+        $id = "m_editor" . rand(0, 9999999);
     }
     if (!empty($t)) {
         $t = str_replace("'", "&#39;", $t);
@@ -91,8 +90,10 @@ function mc_editor($t = "", $id = null) {
         $tm1 = "style";
         $tm2 = null;
     }
-    return "<div class='m_editor' id='" . $id . "'></div>" .
-            "<script>mc_hazir(function(){" .
+    if(empty($GLOBALS['editor_syc'])){
+       $GLOBALS['editor_syc'] = 1;
+        return "<div class='m_editor' name='icerik' id='" . $id . "'></div>" .
+            "<script>var mc_tum_editorler = []; mc_hazir(function(){ " .
             "mc_loadCss('" . mc_plugins . "editor/css/editor.min.css');" .
             "mc_loadCss('" . mc_plugins . "editor/css/" . $tm1 . ".min.css?v=1');" .
             "mc_loadCss('" . mc_plugins . "editor/css/plugs.min.css');" .
@@ -101,11 +102,19 @@ function mc_editor($t = "", $id = null) {
             "mc_loadJs('" . mc_plugins . "editor/js/plugs.min.js').done(function(){" .
             "mc_loadJs('" . mc_plugins . "editor/js/languages/tr.js').done(function(){" .
             "$('#" . $id . "').froalaEditor({toolbarSticky: false,language: 'tr',fileUpload: false" . $tm2 . "});" .
-            "$('#" . $id . "').froalaEditor('html.set','$t', false);" .
+            "$('#" . $id . "').froalaEditor('html.set','$t', false); $.each( mc_tum_editorler, function( key, value ) { if(typeof value === 'function'){ value(); } }); " .
             "});" .
             "});" .
             "});" .
             "});</script>";
+    }else{
+        $GLOBALS['editor_syc'] += 1;
+        return "<div class='m_editor' name='icerik' id='" . $id . "'></div>" .
+            "<script>mc_hazir(function(){  function mc_editor_function_{$id}(){" .
+            "$('#" . $id . "').froalaEditor({toolbarSticky: false,language: 'tr',fileUpload: false" . $tm2 . "});" .
+            "$('#" . $id . "').froalaEditor('html.set','$t', false);" .
+            "} mc_tum_editorler.push(mc_editor_function_{$id}); });</script>";
+    }    
 }
 
 function mc_kadi_kontrol($k = null) {

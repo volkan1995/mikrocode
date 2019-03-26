@@ -15,6 +15,9 @@ if (m_gelistirici > 0) {
     $m_iz = explode(" ", microtime());
     $m_iz = doubleval($m_iz[1]) + doubleval($m_iz[0]);
     if (m_gelistirici == 2) {
+        ini_set('xdebug.var_display_max_depth', '-1');
+        ini_set('xdebug.var_display_max_children', '-1');
+        ini_set('xdebug.var_display_max_data', '-1');
         @ini_set('display_errors', 1);
         @ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);

@@ -30,9 +30,9 @@
                         <tr>
                             <th scope="row"><?=mc_dil('vt_sifreniz')?></th>
                             <td>
-                                <button type="button" class="btn btn-warning btn-xs waves-effect" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="" data-content="<?=!empty(mdb_pass)?mdb_pass:mc_dil('sifre_belirlenmemis')?>" data-original-title="<?=mc_dil('vt_sifreniz')?>">
+                                <a href="javascipt:void(0)" title="<?=!empty(mdb_pass)?mdb_pass:mc_dil('sifre_belirlenmemis')?>">
                                     <?=mc_dil('goster')?>
-                                </button>
+                                </a>
                             </td>
                         </tr>
                         <tr>
@@ -46,9 +46,9 @@
                         <tr>
                             <th scope="row" style="border-bottom: none;"><?=mc_dil('kullanici_sifreniz')?></th>
                             <td style="border-bottom: none;">
-                                <button type="button" class="btn btn-warning btn-xs waves-effect" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="" data-content="<?=$_SESSION['pass']?>" data-original-title="<?=mc_dil('kullanici_sifreniz')?>">
+                                <a href="javascipt:void(0)" title="<?=$_SESSION['pass']?>">
                                     <?=mc_dil('goster')?>
-                                </button>
+                                </a>
                             </td>
                         </tr>
                     </tbody>

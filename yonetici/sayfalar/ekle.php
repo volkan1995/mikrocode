@@ -16,7 +16,7 @@ require '..' . DIRECTORY_SEPARATOR . 'loader.php';
                             <?php
                             $dil_tf = true;
                             foreach ($mt_diller as $dil => $tanimlar) {
-                                if(empty($tanimlar['dil'])){
+                                if (empty($tanimlar['dil'])) {
                                     unset($mt_diller[$dil]);
                                     continue;
                                 }
@@ -34,24 +34,24 @@ require '..' . DIRECTORY_SEPARATOR . 'loader.php';
                             $dil_tf = true;
                             foreach ($mt_diller as $dil => $tanimlar) {
                                 if ($dil_tf) {
-                                    echo '<div role="tabpanel" class="row tab-pane fade active in" id="form_' . $dil . '">';
+                                    echo '<fieldset role="tabpanel" data-dil="' . $dil . '" class="row tab-pane fade active in" id="form_' . $dil . '">';
                                     $dil_tf = false;
                                 } else {
-                                    echo '<div role="tabpanel" class="row tab-pane fade" id="form_' . $dil . '">';
+                                    echo '<fieldset role="tabpanel" data-dil="' . $dil . '" class="row tab-pane fade" id="form_' . $dil . '">';
                                 }
                                 ?>
                                 <div class="col-md-9 col-sm-8 col-xs-12">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" name="baslik[<?= $dil ?>]" placeholder="Başlık Giriniz" value="" required/>
+                                            <input type="text" class="form-control" name="baslik" placeholder="Başlık Giriniz" value="" required/>
                                         </div>
                                     </div>
                                     <div class="row">                                        
                                         <div class="col-md-12 m-t-10">
-                                            <select name="sayfa[<?= $dil ?>]" class="form-control show-tick" required><?= mc_kategoriler(['tablo' => $mc_modul_ayar['tablo'], 'dil' => $dil]) ?></select>
+                                            <select name="sayfa" class="form-control show-tick" required><?= mc_kategoriler(['tablo' => $mc_modul_ayar['tablo'], 'dil' => $dil]) ?></select>
                                         </div> 
                                         <div class="col-md-6 m-t-15">
-                                            <select name="kategori[<?= $dil ?>]" class="form-control show-tick live_trigger" required>
+                                            <select name="kategori" class="form-control show-tick live_trigger" required>
                                                 <option value='yazi'><?= mc_dil('yazi') ?></option>
                                                 <option data-trigger="#sekmede_ac" value='yonlendir'><?= mc_dil('yonlendir') ?></option>
                                                 <option value='kategoriler'><?= mc_dil('kategori') ?></option>
@@ -62,48 +62,47 @@ require '..' . DIRECTORY_SEPARATOR . 'loader.php';
                                         <div class="col-md-6 m-t-15">                    
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="parametre[<?= $dil ?>]" placeholder="<?= mc_dil('parametre') ?>" value=""/>
+                                                    <input type="text" class="form-control" name="parametre" placeholder="<?= mc_dil('parametre') ?>" value=""/>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <?php
                                     if (isset($mc_modul_ayar['tasarim']['icerik']) && $mc_modul_ayar['tasarim']['icerik']) {
-                                        echo '<div class="m-t-30">' . mc_editor(null, "m_editor_{$dil}") . '</div>';
+                                        echo '<div class="m-t-30">' . mc_editor() . '</div>';
                                     }
                                     if (isset($mc_modul_ayar['tasarim']['galeri']) && $mc_modul_ayar['tasarim']['galeri']) {
-                                        echo '<div class="m-t-30">' . mc_dosyalar("gorsel", [], "galeri_" . $dil, ['baslik' => "Galeri Resimleri Seç / Yükle"]) . '</div>';
+                                        echo '<div class="m-t-30">' . mc_dosyalar("gorsel", [], "galeri", ['baslik' => "Galeri Resimleri Seç / Yükle", 'detaylar' =>true]) . '</div>';
                                     }
                                     if (isset($mc_modul_ayar['tasarim']['ek']) && $mc_modul_ayar['tasarim']['ek']) {
-                                        echo '<div class="m-t-30">' . mc_dosyalar("dosya", [], $dil . "_ek", ['baslik' => "Ek Seç / Yükle", 'detaylar' => true]) . '</div>';
+                                        echo '<div class="m-t-30">' . mc_dosyalar("dosya", [], "ek", ['baslik' => "Ek Seç / Yükle", 'detaylar' => true]) . '</div>';
                                     }
                                     ?>
                                 </div>
                                 <div class="col-md-3 col-sm-4 col-xs-12">
-                                    <input type="hidden" name="diller[]" value="<?= $dil ?>" />
                                     <div class="switch m-t-20">
                                         <b class="mc_sw_b80">Yayın</b>
-                                        <label><input name="yayin[<?= $dil ?>]" type="checkbox" checked/><span class="lever switch-col-theme"></span></label>
+                                        <label><input name="yayin" type="checkbox" checked/><span class="lever switch-col-theme"></span></label>
                                     </div>
                                     <div class="switch m-t-20">
                                         <b class="mc_sw_b80"><?= mc_dil('menu') ?></b>
-                                        <label><input name="menu[<?= $dil ?>]" type="checkbox" checked/><span class="lever switch-col-theme"></span></label>
+                                        <label><input name="menu" type="checkbox" checked/><span class="lever switch-col-theme"></span></label>
                                     </div>   
                                     <div class="switch m-t-20" id="sekmede_ac" style="display:none">
                                         <b class="mc_sw_b80">Sekmede Aç</b>
-                                        <label><input name="sekme[<?= $dil ?>]" type="checkbox"/><span class="lever switch-col-theme"></span></label>
+                                        <label><input name="sekme" type="checkbox"/><span class="lever switch-col-theme"></span></label>
                                     </div>
                                     <?php
                                     if (isset($mc_modul_ayar['tasarim']['resim']) && $mc_modul_ayar['tasarim']['resim']) {
-                                        echo '<div class="m-t-10">' . mc_dosya("gorsel", 0, "kapak_" . $dil) . '</div>';
+                                        echo '<div class="m-t-10">' . mc_dosya("gorsel", 0, "kapak") . '</div>';
                                     }
                                     if (isset($mc_modul_ayar['tasarim']['video']) && $mc_modul_ayar['tasarim']['video']) {
-                                        echo '<div class="m-t-10">' . mc_dosya("video", 0, "video_" . $dil) . '</div>';
+                                        echo '<div class="m-t-10">' . mc_dosya("video", 0, "video") . '</div>';
                                     }
                                     ?>
                                 </div>                            
                                 <?php
-                                echo "</div>";
+                                echo "</fieldset>";
                             }
                             ?>
                         </div>
@@ -113,5 +112,38 @@ require '..' . DIRECTORY_SEPARATOR . 'loader.php';
         </div>
     </div>
 </form>
+<script>
+    mc_hazir(function () {
+        $("form").each(function () {
+            if ($(this).find("fieldset[data-dil]").length > 0) {
+                var data_dil = null;
+                $(this).find("fieldset[data-dil]").each(function () {
+                    var this_fieldset = $(this);
+                    data_dil = this_fieldset.data('dil');                    
+                    if (this_fieldset.find(".mc_ds").length > 0) {
+                        this_fieldset.find(".mc_ds").each(function () {
+                            $(this).attr('id', $(this).attr('id') + "_" + data_dil);
+                            if ($(this).find("[data-isim]").length == 1) {
+                                var data_isim = $(this).find("[data-isim]");
+                                data_isim.data('name', "diller[" + data_dil + "][" + data_isim.data('isim') + "]");
+                                data_isim.data('isim', data_isim.data('isim') + "_" + data_dil);
+                                data_isim.attr('data-isim', data_isim.data('isim'));
+                            }
+                        });
+                    }
+                    this_fieldset.find("*:not(div)[name]").each(function () {
+                        $(this).attr('name', "diller[" + data_dil + "][" + $(this).attr('name') + "]");
+                    });
+                    if (this_fieldset.find(".m_editor").length > 0) {
+                        this_fieldset.find(".m_editor").each(function () {
+                            $(this).attr('dil', data_dil);
+                        });
+                    }
+                });
+            }
+        });
+    });
+
+</script>
 <?php
 require mc_sablon . 'footer.php';

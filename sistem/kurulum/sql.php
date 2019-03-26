@@ -72,7 +72,7 @@ $mc_sql[$mc_tablolar[6]]['eklenti'] = "TEXT NULL";
 $mc_sql[$mc_tablolar[6]]['ekleyen'] = "INT(11) NULL DEFAULT 0";
 $mc_sql[$mc_tablolar[6]]['duzenleyen'] = "INT(11) NULL DEFAULT 0";
 $mc_sql[$mc_tablolar[6]]['etarih'] = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP";
-$mc_sql[$mc_tablolar[6]]['dtarih'] = "TIMESTAMP NOT NULL DEFAULT NULL";
+$mc_sql[$mc_tablolar[6]]['dtarih'] = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP";
 
 $mc_tablolar[7] = "kategoriler";
 $mc_sql[$mc_tablolar[7]]['baslik'] = "VARCHAR(255) DEFAULT NULL";
@@ -92,7 +92,7 @@ $mc_sql[$mc_tablolar[7]]['resim'] = "INT(11) NULL DEFAULT 0";
 $mc_sql[$mc_tablolar[7]]['eklenti'] = "TEXT NULL";
 $mc_sql[$mc_tablolar[7]]['izinler'] = "TEXT NULL";
 $mc_sql[$mc_tablolar[7]]['etarih'] = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP";
-$mc_sql[$mc_tablolar[7]]['dtarih'] = "TIMESTAMP NOT NULL DEFAULT NULL";
+$mc_sql[$mc_tablolar[7]]['dtarih'] = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP";
 
 $mc_tablolar[8] = "yazilar";
 $mc_sql[$mc_tablolar[8]]['baslik'] = "VARCHAR(255) DEFAULT NULL";
@@ -111,7 +111,7 @@ $mc_sql[$mc_tablolar[8]]['duzenleyen'] = "INT(11) NULL DEFAULT 0";
 $mc_sql[$mc_tablolar[8]]['resim'] = "INT(11) NULL DEFAULT 0";
 $mc_sql[$mc_tablolar[8]]['eklenti'] = "TEXT NULL";
 $mc_sql[$mc_tablolar[8]]['etarih'] = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP";
-$mc_sql[$mc_tablolar[8]]['dtarih'] = "TIMESTAMP NOT NULL DEFAULT NULL";
+$mc_sql[$mc_tablolar[8]]['dtarih'] = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP";
 
 $mc_tablolar[9] = "mesajlar";
 $mc_sql[$mc_tablolar[9]]['baslik'] = "VARCHAR(255) DEFAULT NULL";

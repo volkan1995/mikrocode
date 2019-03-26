@@ -1,14 +1,20 @@
 <?php
+if (empty($_SERVER['HTTP_REFERER'])) {
+    $mapi_result['status'] = false;
+    $mapi_result['error'] = "Token eşleşmesi hatalı: Doğrulama kodu";
+    exit(json_encode($mapi_result['error']));
+}
+if (empty($_SERVER['HTTP_ID']) || empty($_SERVER['HTTP_KEY']) || empty($_SERVER['HTTP_USE'])) {   
+    if (empty($_GET['id']) || empty($_GET['key']) || empty($_GET['use'])) {
+        $mapi_result['status'] = false;
+        $mapi_result['error'] = "Token eşleşmesi hatalı";
+        exit(json_encode($mapi_result['error']));
+    }
+    $_SERVER['HTTP_ID'] = $_GET['id'];
+    $_SERVER['HTTP_KEY'] = $_GET['key'];
+    $_SERVER['HTTP_USE'] = $_GET['use'];
+}
 
-if (!isset($_SERVER['HTTP_REFERER']) || empty($_SERVER['HTTP_REFERER'])) {
-    exit;
-}
-if (!isset($_GET['id']) || !isset($_GET['key']) || !isset($_GET['use'])) {
-    exit;
-}
-if (empty($_GET['id']) || empty($_GET['key']) || empty($_GET['use'])) {
-    exit;
-}
 if (empty($_GET['lang'])) {
     $_GET['lang'] = "tr";
 }
@@ -31,7 +37,7 @@ if (file_exists("." . DIRECTORY_SEPARATOR . "lang" . DIRECTORY_SEPARATOR . $_GET
 }
 
 /* Verileri al */
-$m_api = array('kod' => trim($_GET['id']), 'anahtar' => trim($_GET['key']), 'istek' => trim($_GET['use']));
+$m_api = array('kod' => trim($_SERVER['HTTP_ID']), 'anahtar' => trim($_SERVER['HTTP_KEY']), 'istek' => trim($_SERVER['HTTP_USE']));
 
 /* İstek geçerli mi */
 if (!in_array($m_api['istek'], $mc_istekler)) {
@@ -43,7 +49,7 @@ $mapi_bul = $m_vt->select()->from("mapi")
         ->where("kod", $m_api['kod'])->where("anahtar", $m_api['anahtar'])->where("durum", 1)->where("tip", 0)
         ->result();
 if (count($mapi_bul) == 0) {
-    hataYaz(1, $mapi_dil[1] . "; ID:" . $_GET['id'] . ", KEY:" . $_GET['key']);
+    hataYaz(1, $mapi_dil[1] . "; ID:" . $_SERVER['HTTP_ID'] . ", KEY:" . $_SERVER['HTTP_KEY']);
 }
 $mapi_bul = $mapi_bul[0];
 
@@ -66,7 +72,7 @@ if (count($mapi_istemciler) && !in_array($m_api['istemci'], $mapi_istemciler)) {
 
 /* API limitini kontrol et */
 $mapi_dongu = json_decode($mapi_bul->dongu);
-if (count($mapi_dongu)) {
+if (!empty($mapi_dongu)) {
     $mapi_ymdH = date('ymdH');
     if ($mapi_dongu->s != $mapi_ymdH) {
         $mapi_kaydet = $m_vt->guncelle(['table' => "mapi", 'values' => ['sayac' => 1, 'dongu' => json_encode(array('s' => $mapi_ymdH, 'l' => $mapi_dongu->l))], 'where' => ['id' => $mapi_bul->id]])['sonuc'];
@@ -94,4 +100,4 @@ if (file_exists($m_api['konum'])) {
 
 /* Verileri yaz */
 echo json_encode($mapi_result);
-exit;
+exit(1);

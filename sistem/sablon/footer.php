@@ -7,8 +7,8 @@ if (!isset($_POST['mc_js'])) {
     ?>        
     </section>
     <script src="<?= mc_plugins ?>bootstrap/js/bootstrap.js?v=2"></script>
-    <script src="<?= mc_js ?>admin.js?v=25"></script>
-    <script src="<?= mc_js ?>demo.js?v=25"></script>
+    <script src="<?= mc_js ?>admin.js?v=26"></script>
+    <script src="<?= mc_js ?>demo.js?v=26"></script>
     <link href="<?= mc_css ?>nprogress.css?v=2" rel="stylesheet" type="text/css"/>
     <link href="<?= mc_plugins ?>node-waves/waves.min.css?v=2" rel="stylesheet" />
     <script src="<?= mc_js ?>nprogress.js?v=2" type="text/javascript" defer="defer"></script>
