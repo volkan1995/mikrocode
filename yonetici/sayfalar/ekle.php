@@ -72,7 +72,7 @@ require '..' . DIRECTORY_SEPARATOR . 'loader.php';
                                         echo '<div class="m-t-30">' . mc_editor() . '</div>';
                                     }
                                     if (isset($mc_modul_ayar['tasarim']['galeri']) && $mc_modul_ayar['tasarim']['galeri']) {
-                                        echo '<div class="m-t-30">' . mc_dosyalar("gorsel", [], "galeri", ['baslik' => "Galeri Resimleri Seç / Yükle"]) . '</div>';
+                                        echo '<div class="m-t-30">' . mc_dosyalar("gorsel", [], "galeri", ['baslik' => "Galeri Resimleri Seç / Yükle", 'detaylar' =>true]) . '</div>';
                                     }
                                     if (isset($mc_modul_ayar['tasarim']['ek']) && $mc_modul_ayar['tasarim']['ek']) {
                                         echo '<div class="m-t-30">' . mc_dosyalar("dosya", [], "ek", ['baslik' => "Ek Seç / Yükle", 'detaylar' => true]) . '</div>';
@@ -119,19 +119,21 @@ require '..' . DIRECTORY_SEPARATOR . 'loader.php';
                 var data_dil = null;
                 $(this).find("fieldset[data-dil]").each(function () {
                     var this_fieldset = $(this);
-                    data_dil = this_fieldset.data('dil');
-                    this_fieldset.find("*:not(div)[name]").each(function () {
-                        $(this).attr('name', "diller[" + data_dil + "][" + $(this).attr('name') + "]");
-                    });
+                    data_dil = this_fieldset.data('dil');                    
                     if (this_fieldset.find(".mc_ds").length > 0) {
                         this_fieldset.find(".mc_ds").each(function () {
                             $(this).attr('id', $(this).attr('id') + "_" + data_dil);
                             if ($(this).find("[data-isim]").length == 1) {
                                 var data_isim = $(this).find("[data-isim]");
-                                data_isim.attr('data-isim', data_isim.data('isim') + "_" + data_dil);
+                                data_isim.data('name', "diller[" + data_dil + "][" + data_isim.data('isim') + "]");
+                                data_isim.data('isim', data_isim.data('isim') + "_" + data_dil);
+                                data_isim.attr('data-isim', data_isim.data('isim'));
                             }
                         });
                     }
+                    this_fieldset.find("*:not(div)[name]").each(function () {
+                        $(this).attr('name', "diller[" + data_dil + "][" + $(this).attr('name') + "]");
+                    });
                     if (this_fieldset.find(".m_editor").length > 0) {
                         this_fieldset.find(".m_editor").each(function () {
                             $(this).attr('dil', data_dil);

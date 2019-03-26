@@ -95,9 +95,19 @@ $(document).on('submit', '#content-form, .oto-form', function(e) {
             setTimeout(function(){ if(notext){ mc_otofkBtn.text(mc_otofkTxt); } mc_FKaydetTF = true; }, 200); 
             return false;
         }
-        $(this_fid + ' .fr-box').each(function (){       
-            post_array[$(this).attr('dil')][$(this).attr('name')] = $(this).froalaEditor('html.get');
-        });        
+        $(this_fid + ' .m_editor').each(function (){
+            if($(this).attr('dil')){
+                if(!post_array['diller']){
+                    post_array['diller'] = {};
+                }
+                if(!post_array['diller'][$(this).attr('dil')]){
+                    post_array['diller'][$(this).attr('dil')] = {};
+                }
+                post_array['diller'][$(this).attr('dil')][$(this).attr('name')] = $(this).froalaEditor('html.get');
+            }else{
+                post_array['icerik'] = $(this).froalaEditor('html.get');
+            }
+        });
         $(this_fid + ' input[type=checkbox]').each(function (){
             var this_cbn = $(this).attr('name');
             if(typeof this_cbn != 'undefined') {

@@ -109,7 +109,7 @@ function mc_editor($t = "", $id = null) {
             "});</script>";
     }else{
         $GLOBALS['editor_syc'] += 1;
-        return "<div class='m_editor' id='" . $id . "'></div>" .
+        return "<div class='m_editor' name='icerik' id='" . $id . "'></div>" .
             "<script>mc_hazir(function(){  function mc_editor_function_{$id}(){" .
             "$('#" . $id . "').froalaEditor({toolbarSticky: false,language: 'tr',fileUpload: false" . $tm2 . "});" .
             "$('#" . $id . "').froalaEditor('html.set','$t', false);" .

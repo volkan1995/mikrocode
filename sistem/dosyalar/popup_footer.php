@@ -19,5 +19,5 @@ if(isset($_POST['coklu']) && $_POST['coklu'] == 1){
 </div>
 <script>
     mc_loadCss("<?=mc_js?>pages/files/popup.css?v=14");
-    mc_loadJs("<?=mc_js?>pages/files/popup.js?v=14");
+    mc_loadJs("<?=mc_js?>pages/files/popup.js?v=18");
 </script>

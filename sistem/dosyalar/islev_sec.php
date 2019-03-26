@@ -5,6 +5,7 @@
     
     if(!isset($_POST['id']) || empty($_POST['id'])){ exit; }
     if(!isset($_POST['aktarid']) || empty($_POST['aktarid'])){ exit; }
+    if(!isset($_POST['aktarname']) || empty($_POST['aktarname'])){ exit; }
     
     if(!is_numeric($_POST['id'])){
         if(!is_array($_POST['id'])){ $_POST['id'] = json_decode($_POST['id']); }
@@ -32,11 +33,13 @@
             if(isset($_POST['detay']) && $_POST['detay'] == 1){
                 echo '<div class="mcd_gd"><button class="btn btn-xs btn-default waves-effect" role="button" data-toggle="collapse" href="#mc_gdty'.$dosya->id.'" aria-expanded="false" aria-controls="mc_gdty'.$dosya->id.'">
                     <i class="material-icons">drag_handle</i></button><div class="collapse" id="mc_gdty'.$dosya->id.'" aria-expanded="false">
-                    <input type="text" class="form-control" style="margin-bottom:3px;" name="'.$_POST['aktarid'].'_b[]" placeholder="Başlık"/>
-                    <input type="text" class="form-control" style="margin-bottom:3px;" name="'.$_POST['aktarid'].'_a[]" placeholder="Açıklama"/>
-                    <input type="text" class="form-control" style="margin-bottom:3px;" name="'.$_POST['aktarid'].'_u[]" placeholder="Adres"/>
-                    <input type="text" class="form-control" name="'.$_POST['aktarid'].'_y[]" placeholder="Adres Yazısı"/>
+                    <input type="text" class="form-control" style="margin-bottom:3px;" name="'.$_POST['aktarname'].'['.$dosya->id.'][b]" placeholder="Başlık"/>
+                    <input type="text" class="form-control" style="margin-bottom:3px;" name="'.$_POST['aktarname'].'['.$dosya->id.'][a]" placeholder="Açıklama"/>
+                    <input type="text" class="form-control" style="margin-bottom:3px;" name="'.$_POST['aktarname'].'['.$dosya->id.'][u]" placeholder="Adres"/>
+                    <input type="text" class="form-control" name="'.$_POST['aktarname'].'['.$dosya->id.'][y]" placeholder="Adres Yazısı"/>
                     </div></div>';
+            }else{
+                $_POST['detay'] = 0;
             }
         }else{
             $mcd_cs_rg = "250";
@@ -55,9 +58,11 @@
             <audio preload="metadata" src="<?=m_domain."/dosyalar".$dosya->konum?>">Desteklenmiyor</audio>
         <?php }
         if($mcd_coklu == 1){
-            echo '<input type="hidden" class="mcd_values" name="'.$_POST['aktarid'].'[]" value="'.$dosya->id.'"/></div></li>';
+            if($_POST['detay'] == 0){
+                echo '<input type="hidden" class="mcd_values" name="'.$_POST['aktarname'].'['.$dosya->id.']" value="'.$dosya->id.'"/></div></li>';
+            }
         }else{
-            echo '<input type="hidden" class="mcd_values" name="'.$_POST['aktarid'].'" value="'.$dosya->id.'"/></div>';
+            echo '<input type="hidden" class="mcd_values" name="'.$_POST['aktarname'].'" value="'.$dosya->id.'"/></div>';
         }
     }
     exit;
