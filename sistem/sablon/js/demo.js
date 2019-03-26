@@ -96,7 +96,7 @@ $(document).on('submit', '#content-form, .oto-form', function(e) {
             return false;
         }
         $(this_fid + ' .fr-box').each(function (){       
-            post_array[$(this).attr('id')] = $(this).froalaEditor('html.get');
+            post_array[$(this).attr('dil')][$(this).attr('name')] = $(this).froalaEditor('html.get');
         });        
         $(this_fid + ' input[type=checkbox]').each(function (){
             var this_cbn = $(this).attr('name');

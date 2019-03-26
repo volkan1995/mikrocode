@@ -5,17 +5,17 @@
     
     $mapi_sorgu = json_decode($_POST['query']);
     
-    if(!isset($mapi_sorgu->q) || !isset($mapi_sorgu->v)){ hataYaz(3, $mapi_dil[6]."; JSON:".$_POST['query']); }
+    if(!isset($mapi_sorgu->pdo_sql) || !isset($mapi_sorgu->values)){ hataYaz(3, $mapi_dil[6]."; JSON:".$_POST['query']); }
     
-    if(strstr($mapi_sorgu->q, "kullanicilar")){ hataYaz(2, $mapi_dil[8]); }
+    if(strstr($mapi_sorgu->pdo_sql, "kullanicilar")){ hataYaz(2, $mapi_dil[8]); }
     
-    if(strstr($mapi_sorgu->q, "*")){ hataYaz(3, $mapi_dil[9]); }
+    if(strstr($mapi_sorgu->pdo_sql, "*")){ hataYaz(3, $mapi_dil[9]); }
     
-    if(strstr($mapi_sorgu->q, "sifre") || strstr($mapi_sorgu->q, "pass")){ hataYaz(2, $mapi_dil[10]); }
+    if(strstr($mapi_sorgu->pdo_sql, "sifre") || strstr($mapi_sorgu->pdo_sql, "pass")){ hataYaz(2, $mapi_dil[10]); }
     
     try {
         
-        $mapi_vt = $m_vt->sorgu($mapi_sorgu->q,$mapi_sorgu->v);
+        $mapi_vt = $m_vt->sorgu($mapi_sorgu->pdo_sql,$mapi_sorgu->values);
 
         $mapi_result['count'] = count($mapi_vt);
 
