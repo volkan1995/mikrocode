@@ -1,30 +1,29 @@
 <?php
-if (empty($_SERVER['HTTP_REFERER'])) {
-    $mapi_result['status'] = false;
-    $mapi_result['error'] = "Token eşleşmesi hatalı: Doğrulama kodu";
-    exit(json_encode($mapi_result['error']));
-}
-if (empty($_SERVER['HTTP_ID']) || empty($_SERVER['HTTP_KEY']) || empty($_SERVER['HTTP_USE'])) {   
-    if (empty($_GET['id']) || empty($_GET['key']) || empty($_GET['use'])) {
+if (empty($_SERVER['HTTP_AUTHKEY'])) {
+    if (empty($_POST['AUTHKEY'])) {
         $mapi_result['status'] = false;
-        $mapi_result['error'] = "Token eşleşmesi hatalı";
+        $mapi_result['error'] = "Doğrulama anahtarı geçersiz.";
         exit(json_encode($mapi_result['error']));
     }
-    $_SERVER['HTTP_ID'] = $_GET['id'];
-    $_SERVER['HTTP_KEY'] = $_GET['key'];
-    $_SERVER['HTTP_USE'] = $_GET['use'];
+    $_SERVER['HTTP_AUTHKEY'] = $_POST['AUTHKEY'];
 }
 
-if (empty($_GET['lang'])) {
-    $_GET['lang'] = "tr";
+if(strlen($_SERVER['HTTP_AUTHKEY']) > 10){
+    $_SERVER['HTTP_AUTHKEY'] = substr($_SERVER['HTTP_AUTHKEY'], 2, -1);
 }
 
-if (!defined('m_guvenlik')) {
-    define("m_guvenlik", true);
+$auth_key = json_decode(base64_decode($_SERVER['HTTP_AUTHKEY']));
+
+if (empty($auth_key->client) || empty($auth_key->id) || empty($auth_key->key) || empty($_GET['use'])) {
+    $mapi_result['status'] = false;
+    $mapi_result['error']['message'] = "Token eşleşmesi hatalı";
+    $mapi_result['error']['data'] = $auth_key;
+    exit(json_encode($mapi_result['error']));
 }
-if (!defined('m_baglanti')) {
-    define("m_baglanti", true);
-}
+
+if (empty($_GET['lang'])) { $_GET['lang'] = "tr"; }
+if (!defined('m_guvenlik')) { define("m_guvenlik", true); }
+if (!defined('m_baglanti')) { define("m_baglanti", true); }
 
 require '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'index.php';
 
@@ -36,8 +35,16 @@ if (file_exists("." . DIRECTORY_SEPARATOR . "lang" . DIRECTORY_SEPARATOR . $_GET
     require "." . DIRECTORY_SEPARATOR . "lang" . DIRECTORY_SEPARATOR . "tr.php";
 }
 
+if (m_gelistirici < 1) {
+    if(isset($_SERVER['HTTP_POSTMAN_TOKEN'])){
+        $mapi_result['status'] = false;
+        $mapi_result['error'] = $mapi_dil[14];
+        exit(json_encode($mapi_result['error']));
+    }
+}
+
 /* Verileri al */
-$m_api = array('kod' => trim($_SERVER['HTTP_ID']), 'anahtar' => trim($_SERVER['HTTP_KEY']), 'istek' => trim($_SERVER['HTTP_USE']));
+$m_api = array('kod' => trim($auth_key->id), 'anahtar' => trim($auth_key->key), 'istek' => trim($_GET['use']));
 
 /* İstek geçerli mi */
 if (!in_array($m_api['istek'], $mc_istekler)) {
@@ -49,7 +56,7 @@ $mapi_bul = $m_vt->select()->from("mapi")
         ->where("kod", $m_api['kod'])->where("anahtar", $m_api['anahtar'])->where("durum", 1)->where("tip", 0)
         ->result();
 if (count($mapi_bul) == 0) {
-    hataYaz(1, $mapi_dil[1] . "; ID:" . $_SERVER['HTTP_ID'] . ", KEY:" . $_SERVER['HTTP_KEY']);
+    hataYaz(1, $mapi_dil[1] . "; ID:" . $auth_key->id . ", KEY:" . $auth_key->key);
 }
 $mapi_bul = $mapi_bul[0];
 
@@ -60,7 +67,7 @@ if (!in_array(array_search($m_api['istek'], $mc_istekler), $mapi_use)) {
 }
 
 /* İstemciler arasında sorgula */
-$m_urlparcala = parse_url($_SERVER['HTTP_REFERER']);
+$m_urlparcala = parse_url($auth_key->client);
 if (!isset($m_urlparcala['host'])) {
     $m_urlparcala['host'] = $m_urlparcala['path'];
 }
@@ -100,4 +107,4 @@ if (file_exists($m_api['konum'])) {
 
 /* Verileri yaz */
 echo json_encode($mapi_result);
-exit(1);
+exit;

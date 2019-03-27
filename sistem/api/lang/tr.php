@@ -24,3 +24,4 @@
     $mapi_dil[11] = "dk";
     $mapi_dil[12] = "Eğer bu mesajı alıyorsanız API hizmetiniz çalışıyordur";
     $mapi_dil[13] = "Bu hizmete erişim yetkiniz yok";
+    $mapi_dil[14] = "API hizmetine 3. taraf uygulamalardan erişebilmek için geliştirici modunu açınız.";
