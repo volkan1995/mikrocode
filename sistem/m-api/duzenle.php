@@ -8,7 +8,7 @@
             <div class="header">
                 <h2><?=mc_ustmenu("ayarlar",$mc_headtitle, true)?></h2>
             </div>
-            <div class="body">
+            <div class="body body_xs">
                 <input type="hidden" name="id" value="<?=$_GET['id']?>"/>
                 <div class="form-group">
                     <label>API Kodu :</label> <span><?=$mc_veri->kod?></span>
@@ -39,7 +39,36 @@
                     <input type="checkbox" id="apiuse_<?=$key?>" name="api_use[<?=$key?>]" class="chk-col-theme"<?php if(in_array($key,$mc_servisler)){ echo " checked"; } ?>/>
                     <label class="col-md-3" for="apiuse_<?=$key?>"><?=ucfirst($value)?></label>
                 <?php } ?>
-                </div>                
+                </div>
+                <div class="col-md-12 m-t-30">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>İstemci</th>
+                                <th>Auth Key</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                foreach ($mapi_istemciler as $k => $istemci) {
+                                    $api_headers['client'] = $istemci;
+                                    $api_authkey = rand(10, 99) . base64_encode( json_encode($api_headers));
+                                    echo '<tr><td style="padding: 10px 0 0 10px;"><span class="waves-effect"><i class="material-icons kopyala" data-yazi="'.$api_authkey.'">content_copy</i></span></td>';
+                                    echo "<td>".$istemci."</td>";
+                                    echo '<td class=".copyauthkey'.$k.'">'. $api_authkey . '=</td>';
+                                    echo "</tr>";
+                                }
+                            ?>
+                        </tbody>
+                    </table>
+                    <b>Kullanım;</b>
+                    <p>
+                        Aşağıdaki adrese, <b>HEADERS</b> verileri içerisinde <b>AUTHKEY</b> anahtarında, kullanılacak istemciye ait <u>auth key</u> kodunu gönderiniz.<br/>
+                        <?=mc_sistem?>api/index.php?use=<b>{Kullanılacak Servis}</b>&lang=<b>{Görüntüleme Dili}</b><br/>
+                        <small>Post verileri kullanacağınız servise göre değişmektedir.</small>
+                    </p>
+                </div>   
             </div>
         </div>
     </div>

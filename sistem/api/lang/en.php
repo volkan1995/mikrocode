@@ -24,3 +24,4 @@
     $mapi_dil[11] = "min";
     $mapi_dil[12] = "If you are receiving this message, your API service is running";
     $mapi_dil[13] = "We do not have access to this service";
+    $mapi_dil[14] = "To access the API service from 3rd party applications, turn on developer mode.";

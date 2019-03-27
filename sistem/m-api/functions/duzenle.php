@@ -76,8 +76,11 @@
 
     $mc_title = mc_dil('api_duzenleniyor');
     
+    $mapi_istemciler = array();
+    
     if(strlen($mc_veri->istemci) > 0){
-        $mc_veri->istemci = implode(",", json_decode($mc_veri->istemci));
+        $mapi_istemciler = json_decode($mc_veri->istemci);
+        $mc_veri->istemci = implode(",", $mapi_istemciler);
     }
 
     $mc_veri_limit = 0;
@@ -89,3 +92,8 @@
     }
     
     $mc_servisler = explode(",", $mc_veri->servis);
+    
+    $api_headers = array(
+        'id' => $mc_veri->kod,        
+        'key' => $mc_veri->anahtar
+    );
