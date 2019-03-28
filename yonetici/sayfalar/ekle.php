@@ -28,6 +28,7 @@ require '..' . DIRECTORY_SEPARATOR . 'loader.php';
                                 }
                             }
                             ?>
+                            <li class="multi-lang-copy-li"><span type="submit" class="btn btn-circle-xs btn-link waves-effect"><i class="material-icons">swap_horiz</i></span></li>
                         </ul>
                         <div class="tab-content">
                             <?php
@@ -48,12 +49,12 @@ require '..' . DIRECTORY_SEPARATOR . 'loader.php';
                                     </div>
                                     <div class="row">                                        
                                         <div class="col-md-12 m-t-10">
-                                            <select name="sayfa" class="form-control show-tick" required><?= mc_kategoriler(['tablo' => $mc_modul_ayar['tablo'], 'dil' => $dil]) ?></select>
+                                            <select name="sayfa" class="form-control show-tick" data-grup="kategori" required><?= mc_kategoriler(['tablo' => $mc_modul_ayar['tablo'], 'dil' => $dil]) ?></select>
                                         </div> 
                                         <div class="col-md-6 m-t-15">
                                             <select name="kategori" class="form-control show-tick live_trigger" required>
                                                 <option value='yazi'><?= mc_dil('yazi') ?></option>
-                                                <option data-trigger="#sekmede_ac" value='yonlendir'><?= mc_dil('yonlendir') ?></option>
+                                                <option data-trigger="#sekmede_ac_<?= $dil ?>" value='yonlendir'><?= mc_dil('yonlendir') ?></option>
                                                 <option value='kategoriler'><?= mc_dil('kategori') ?></option>
                                                 <option value='icerikler'><?= mc_dil('icerik') ?></option>
                                                 <option value='yazilar'><?= mc_dil('sayfa') ?></option>
@@ -72,7 +73,7 @@ require '..' . DIRECTORY_SEPARATOR . 'loader.php';
                                         echo '<div class="m-t-30">' . mc_editor() . '</div>';
                                     }
                                     if (isset($mc_modul_ayar['tasarim']['galeri']) && $mc_modul_ayar['tasarim']['galeri']) {
-                                        echo '<div class="m-t-30">' . mc_dosyalar("gorsel", [], "galeri", ['baslik' => "Galeri Resimleri Seç / Yükle", 'detaylar' =>true]) . '</div>';
+                                        echo '<div class="m-t-30">' . mc_dosyalar("gorsel", [], "galeri", ['baslik' => "Galeri Resimleri Seç / Yükle", 'detaylar' => true]) . '</div>';
                                     }
                                     if (isset($mc_modul_ayar['tasarim']['ek']) && $mc_modul_ayar['tasarim']['ek']) {
                                         echo '<div class="m-t-30">' . mc_dosyalar("dosya", [], "ek", ['baslik' => "Ek Seç / Yükle", 'detaylar' => true]) . '</div>';
@@ -88,7 +89,7 @@ require '..' . DIRECTORY_SEPARATOR . 'loader.php';
                                         <b class="mc_sw_b80"><?= mc_dil('menu') ?></b>
                                         <label><input name="menu" type="checkbox" checked/><span class="lever switch-col-theme"></span></label>
                                     </div>   
-                                    <div class="switch m-t-20" id="sekmede_ac" style="display:none">
+                                    <div class="switch m-t-20" id="sekmede_ac_<?= $dil ?>" style="display:none">
                                         <b class="mc_sw_b80">Sekmede Aç</b>
                                         <label><input name="sekme" type="checkbox"/><span class="lever switch-col-theme"></span></label>
                                     </div>
@@ -119,7 +120,7 @@ require '..' . DIRECTORY_SEPARATOR . 'loader.php';
                 var data_dil = null;
                 $(this).find("fieldset[data-dil]").each(function () {
                     var this_fieldset = $(this);
-                    data_dil = this_fieldset.data('dil');                    
+                    data_dil = this_fieldset.data('dil');
                     if (this_fieldset.find(".mc_ds").length > 0) {
                         this_fieldset.find(".mc_ds").each(function () {
                             $(this).attr('id', $(this).attr('id') + "_" + data_dil);
@@ -142,8 +143,28 @@ require '..' . DIRECTORY_SEPARATOR . 'loader.php';
                 });
             }
         });
-    });
+        
+        $(".nav > li.multi-lang-copy-li").click(function () {
+            var secili_field = $('fieldset.active');
+            secili_field.find("#mcd_secililer[data-grup]").each(function () {
+                var secili_input = this;
+                $('#mcd_secililer[data-grup="'+$(secili_input).data('grup')+'"]').not(secili_input).each(function () {                    
+                    var eski_name = $(this).find("input").attr('name');                    
+                    $(this).html($(secili_input).html());
+                    $(this).find("input").attr('name',eski_name)
+                });
+            });
+            
+            secili_field.find("select[data-grup]").each(function () {
+                var secili_input = this;
+                $('select[data-grup="'+$(secili_input).data('grup')+'"]').not(secili_input).each(function () {
+                    $(this).find("option").eq($(secili_input).index() - 1).change();
+                });
+            });
+            
+        });
 
+    });
 </script>
 <?php
 require mc_sablon . 'footer.php';
