@@ -78,7 +78,7 @@ function mc_dosya($t = "", $id = 0, $is = null, $ozellikler = array()) {
         $r = "<div id='mcds_$is' class='mc_ds' style='" . $style . "'>";
     }
     $r .= "<div class='mc_dosyabtn btn btn-link btn-sm waves-effect' data-multi='0' data-isim='$is' data-type='$t'>" . $ozellikler['baslik'] . "</div>";
-    $r .= "<div id='mcd_secililer' data-grup='$is'>";
+    $r .= "<div class='mcd_secililer' data-grup='$is'>";
     $r .= mc_dosya_al($id, $is);
     $r .= "</div></div>";
     return $r;
@@ -123,7 +123,7 @@ function mc_dosyalar($t = "", $id = 0, $is = null, $ozellikler = array()) {
         $r = "<div id='mcds_$is' class='mc_ds'>";
     }
     $r .= "<div class='mc_dosyabtn btn btn-link btn-" . $ozellikler['btn'] . " waves-effect' data-multi='1' data-isim='$is' data-type='$t' data-detay='{$dty}'>" . $ozellikler['baslik'] . "</div>";
-    $r .= "<ul class='mcd_galeri_drag' id='mcd_secililer'>";
+    $r .= "<ul class='mcd_galeri_drag mcd_secililer'>";
     if ($idb) {
         $r .= mc_dosya_al($id, $is, $ozellikler['detaylar']);
     }

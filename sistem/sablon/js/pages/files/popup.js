@@ -122,8 +122,8 @@ if(!mc_dosya_p){
                 if(sec_array.length > 0){
                     $.post(mc_di_url, {dosya_sec:"onay",detay:mcd_detay_d,coklu:1,aktarid:this_id.val(),aktarname:$(this_mcds).find('.mc_dosyabtn').data('name'),id:JSON.stringify(sec_array)},
                     function(data){
-                        if($(this_mcds + " > #mcd_secililer .mcd_def").length > 0){ $(this_mcds + " > #mcd_secililer .mcd_def").remove(); }
-                        $(this_mcds + " > #mcd_secililer").append(data);
+                        if($(this_mcds + " > .mcd_secililer .mcd_def").length > 0){ $(this_mcds + " > .mcd_secililer .mcd_def").remove(); }
+                        $(this_mcds + " > .mcd_secililer").append(data);
                     });
                 }
             }
@@ -208,12 +208,12 @@ if(!mc_dosya_p){
                         mcdp_tf = false;
                         $("#mcd_sec_btn").text("Kaldır");
                         if(mcd_coklu_o == 1){
-                            if($(this_mcds + " > #mcd_secililer .mcd_def").length > 0){
-                                $(this_mcds + " > #mcd_secililer .mcd_def").remove();
+                            if($(this_mcds + " > .mcd_secililer .mcd_def").length > 0){
+                                $(this_mcds + " > .mcd_secililer .mcd_def").remove();
                             }
-                            $(this_mcds + " > #mcd_secililer").append(data);
+                            $(this_mcds + " > .mcd_secililer").append(data);
                         }else{
-                            $(this_mcds + " > #mcd_secililer").html(data);
+                            $(this_mcds + " > .mcd_secililer").html(data);
                         }
                         if($('audio').not(".mc_muzikc audio, .mc_apl_ok").length > 0){ $('audio').not(".mc_muzikc audio, .mc_apl_ok").mc_apl(); }
                     });

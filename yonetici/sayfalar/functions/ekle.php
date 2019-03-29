@@ -4,13 +4,13 @@ if (!defined('m_guvenlik')) { exit; }
 require 'ayar.php';
 
 if (isset($_POST['kaydet'])) {
-    mc_yetki($mc_modul_ayar['yetki'], 2);   
+    mc_yetki($mc_modul_ayar['yetki'], 1);   
     
     if (!isset($_POST['diller'])) {
         $_POST['diller']['tr'] = $_POST;
     }
     $dil_grup = 0;
-    foreach ($_POST['diller'] as $dil => $_POST) {            
+    foreach ($_POST['diller'] as $dil => $_POST) {
         if (empty($_POST['baslik'])) {
             mc_uyari(-3, "<b>" . mc_dil('basarisiz') . "</b>" . mc_dil('bos_alanlar_var'));            
         }
@@ -36,13 +36,14 @@ if (isset($_POST['kaydet'])) {
         }
         
         $mc_json = array();
-        if (isset($_POST['galeri']) && !empty($_POST['galeri'])) { $mc_json['galeri'] = $_POST['galeri']; }
+        
         if (!empty($_POST['video'])) {  $mc_json['video'] = $_POST['video']; }            
         if (isset($_POST['ek']) && !empty($_POST['ek'])) { $mc_json['ek'] = $_POST['ek']; }
-        if (isset($_POST['ek_b'])) { $mc_json['ek_b'] = $_POST['ek_b']; }
-        if (isset($_POST['ek_a'])) { $mc_json['ek_a'] = $_POST['ek_a']; }
-        if (isset($_POST['ek_u'])) { $mc_json['ek_u'] = $_POST['ek_u']; }
-        if (isset($_POST['ek_y'])) { $mc_json['ek_y'] = $_POST['ek_y']; }
+        if (isset($_POST['galeri']) && !empty($_POST['galeri'])) {
+            $mc_json['galeri_ek'] = $_POST['galeri'];
+            $mc_json['galeri'] = array_keys($mc_json['galeri']);            
+        }
+        
         if ($_POST['kategori'] == "yonlendir" && isset($_POST['sekme'])) { $mc_json['sekme'] = $_POST['sekme']; }
         
         $mc_kaydet = $m_vt->ekle([
@@ -74,4 +75,5 @@ if (isset($_POST['kaydet'])) {
         mc_uyari(-4, "<b>" . mc_dil('basarili') . "</b>Sayfa bilinmeyen bir hatadan dolayı eklenemedi.");
     }
 }
+
 $mc_title = mc_dil($mc_modul_ayar['ekle']);
