@@ -1,165 +1,103 @@
 <?php
 
-if (!defined('m_guvenlik')) {
-    exit;
-}
-
+if (!defined('m_guvenlik')) { exit; }
 require 'ayar.php';
 
 if (isset($_POST['kaydet'])) {
-
-    mc_yetki($mc_modul_ayar['yetki'], 2);
-    $dil_grup = 0;
-    foreach ($_POST['id'] as $dil => $id) {
-        $id = intval(@$id);
-        if ($id != 0) {
+    
+    mc_yetki($mc_modul_ayar['yetki'], 2);   
+    
+    if (!isset($_POST['diller'])) {
+        $_POST['diller']['tr'] = $_POST;
+    }
+    
+    $grupID = 0; 
+    
+    foreach ($_POST['diller'] as $dil => $_POST) {
+        $id = 0;
+        if (!empty($_POST['id'])) {
+            $id = intval($_POST['id']);
             $varlik_sor = $m_vt->select()->from($mc_modul_ayar['tablo'])->where("id", $id)->result();
             if (count($varlik_sor) == 0) {
-                mc_uyari(-3, "<b>" . mc_dil('basarisiz') . "</b>Sayfa kaydı bulunamadı $dil : " . $_POST['baslik'][$dil]);
+                mc_uyari(-3, "<b>" . mc_dil('basarisiz') . "</b>İçerik kaydı bulunamadı. {$dil}: " . $_POST['baslik']);
             }
-            if ($dil_grup == 0) {
-                if ($varlik_sor[0]->grup == 0) {
-                    $dil_grup = $varlik_sor[0]->id;
-                } else {
-                    $dil_grup = $varlik_sor[0]->grup;
-                }
+            if ($grupID == 0) {
+                $grupID = ( $varlik_sor[0]->grup == 0 ? $varlik_sor[0]->id :  $varlik_sor[0]->grup );
             }
         }
-
-        if (empty($_POST['baslik'][$dil])) {
-            mc_uyari(-3, "<b>" . mc_dil('basarisiz') . "</b>" . mc_dil('bos_alanlar_var'));
+        
+        if($grupID == 0){
+            mc_uyari(-3, "<b>" . mc_dil('basarisiz') . "</b>İçerik kaydı bulunamadı. {$dil}: " . $_POST['baslik']);
         }
-
-        if (empty($_POST['sef'][$dil])) {
-            $_POST['sef'][$dil] = $_POST['baslik'][$dil];
+        
+        if (empty($_POST['baslik'])) {
+            mc_uyari(-3, "<b>" . mc_dil('basarisiz') . "</b>" . mc_dil('bos_alanlar_var'));            
         }
-        $_POST['sef'][$dil] = mc_sefurl($_POST['baslik'][$dil]);
-
-        if (!isset($_POST['sayfa'][$dil])) {
-            $_POST['sayfa'][$dil] = 0;
-        } else {
-            $_POST['sayfa'][$dil] = intval($_POST['sayfa'][$dil]);
-        }
-
+        
+        $_POST['sayfa'] = (!isset($_POST['sayfa']) ? 0 : intval($_POST['sayfa']));
+        
+        if (empty($_POST['sef'])) { $_POST['sef'] = $_POST['baslik']; }
+        $_POST['sef'] = mc_sefurl($_POST['baslik']);     
+        
         if ($id == 0) {
-            if ($m_vt->select()->from($mc_modul_ayar['tablo'])->where("sef", $_POST['sef'][$dil])->count() > 0) {
-                mc_uyari(-3, "<b>" . mc_dil('basarisiz') . "</b>Zaten benzer bir sayfa kaydı mevcut " . $_POST['baslik'][$dil]);
+            if ($m_vt->select()->from($mc_modul_ayar['tablo'])->where("sef", $_POST['sef'])->count() > 0) {
+                mc_uyari(-3, "<b>" . mc_dil('basarisiz') . "</b>Zaten benzer bir sayfa kaydı mevcut. {$dil}: " . $_POST['baslik']);
             }
         } else {
-            if ($m_vt->select()->from($mc_modul_ayar['tablo'])->where("sef", $_POST['sef'][$dil])->where("id", $_POST['id'][$dil], "<>")->count() > 0) {
-                mc_uyari(-3, "<b>" . mc_dil('basarisiz') . "</b>Zaten benzer bir sayfa kaydı mevcut" . $_POST['baslik'][$dil]);
+            if ($m_vt->select()->from($mc_modul_ayar['tablo'])->where("sef", $_POST['sef'])->where('ust',$_POST['sayfa'])->where("id", $_POST['id'], "<>")->count() > 0) {
+                mc_uyari(-3, "<b>" . mc_dil('basarisiz') . "</b>Zaten benzer bir sayfa kaydı mevcut. {$dil}: ".$_POST['baslik']);
             }
         }
         
-        if (empty($_POST['kategori'][$dil])) {
-            $_POST['kategori'][$dil] = "yazi";
-        }
-
-        if (!in_array($_POST['kategori'][$dil], ["yazi", "yonlendir", "kategoriler", "icerikler", "sayfalar"])) {
-            $_POST['kategori'][$dil] = "yazi";
-        }
-    
-        if (!isset($_POST['m_editor_' . $dil])) {
-            $_POST['m_editor_' . $dil] = null;
-        }
-
-        if (!isset($_POST['kapak_' . $dil])) {
-            $_POST['kapak_' . $dil] = 0;
-        } else {
-            $_POST['kapak_' . $dil] = intval($_POST['kapak_' . $dil]);
-        }
-
-        if (!isset($_POST['yayin'][$dil])) {
-            $_POST['yayin'][$dil] = 0;
-        } else {
-            $_POST['yayin'][$dil] = intval($_POST['yayin'][$dil]);
-        }
-
-        if (!isset($_POST['menu'][$dil])) {
-            $_POST['menu'][$dil] = 0;
-        } else {
-            $_POST['menu'][$dil] = intval($_POST['menu'][$dil]);
+        if (empty($_POST['kategori'])) { $_POST['kategori'] = "yazi"; }
+        if (!in_array($_POST['kategori'], ["yazi", "yonlendir", "kategoriler", "icerikler", "sayfalar"])) {
+            $_POST['kategori'] = "yazi";
         }
         
-        if ($_POST['kategori'][$dil] != "yazi") {
-            if (!isset($_POST['parametre'][$dil])) {
-                $_POST['parametre'][$dil] = null;
-            }
-            $_POST['m_editor_' . $dil] = $_POST['parametre'][$dil];
+        if (!isset($_POST['icerik'])) { $_POST['icerik'] = null; }
+        if (!isset($_POST['kapak' ])) { $_POST['kapak'] = 0; } else { $_POST['kapak'] = intval($_POST['kapak']); }
+        if (!isset($_POST['yayin'])) { $_POST['yayin'] = 0; } else { $_POST['yayin'] = intval($_POST['yayin']); }
+        if (!isset($_POST['menu'])) { $_POST['menu'] = 0; } else { $_POST['menu'] = intval($_POST['menu']); }
+        if ($_POST['kategori'] != "yazi") {
+            if (!isset($_POST['parametre'])) { $_POST['parametre'] = null; }
+            $_POST['icerik'] = $_POST['parametre'];
         }
         
-        $mc_json[$dil] = array();
-
-        if (isset($_POST['galeri_' . $dil]) && !empty($_POST['galeri_' . $dil])) {
-            $mc_json[$dil]['galeri'] = $_POST['galeri_' . $dil];
+        $mc_json = array();
+        
+        if (!empty($_POST['video'])) {  $mc_json['video'] = $_POST['video']; }            
+        if (isset($_POST['ek']) && !empty($_POST['ek'])) { $mc_json['ek'] = $_POST['ek']; }
+        if (isset($_POST['galeri']) && !empty($_POST['galeri'])) {
+            $mc_json['galeri_ek'] = $_POST['galeri'];
+            $mc_json['galeri'] = array_keys($mc_json['galeri']);            
         }
-        if (!empty($_POST['video_' . $dil])) {
-            $mc_json[$dil]['video'] = $_POST['video_' . $dil];
-        }
-        if (isset($_POST[$dil . '_ek']) && !empty($_POST[$dil . '_ek'])) {
-            $mc_json[$dil]['ek'] = $_POST[$dil . '_ek'];
-        }
-        if (isset($_POST[$dil . '_ek_b'])) {
-            $mc_json[$dil]['ek_b'] = $_POST[$dil . '_ek_b'];
-        }
-        if (isset($_POST[$dil . '_ek_a'])) {
-            $mc_json[$dil]['ek_a'] = $_POST[$dil . '_ek_a'];
-        }
-        if (isset($_POST[$dil . '_ek_u'])) {
-            $mc_json[$dil]['ek_u'] = $_POST[$dil . '_ek_u'];
-        }
-        if (isset($_POST[$dil . '_ek_y'])) {
-            $mc_json[$dil]['ek_y'] = $_POST[$dil . '_ek_y'];
-        }        
-        if ($_POST['kategori'][$dil] == "yonlendir" && isset($_POST['sekme'][$dil])) {
-            $mc_json[$dil]['sekme'] = $_POST['sekme'][$dil];
-        }
-    
-        $mc_json[$dil] = json_encode($mc_json[$dil]);
-
+        
+        if ($_POST['kategori'] == "yonlendir" && isset($_POST['sekme'])) { $mc_json['sekme'] = $_POST['sekme']; }
+        
+        $kayit_verileri = array(
+            'baslik' => $_POST['baslik'],
+            'sef' => $_POST['sef'],
+            'icerik' => $_POST['icerik'],
+            'tip' => $_POST['kategori'],
+            'ust' => $_POST['sayfa'],
+            'durum' => $_POST['yayin'],
+            'menu' => $_POST['menu'],
+            'resim' => $_POST['kapak'],
+            'eklenti' => json_encode($mc_json),
+            'grup' => $grupID,
+            'dil' => $dil
+        );        
+        
         if ($id == 0) {
-            $mc_kaydet = $m_vt->ekle([
-                        'table' => $mc_modul_ayar['tablo'],
-                        'values' => [
-                            'baslik' => $_POST['baslik'][$dil],
-                            'sef' => $_POST['sef'][$dil],
-                            'icerik' => $_POST['m_editor_' . $dil],
-                            'tip' => $_POST['kategori'][$dil],
-                            'ust' => $_POST['sayfa'][$dil],
-                            'durum' => $_POST['yayin'][$dil],
-                            'menu' => $_POST['menu'][$dil],
-                            'ekleyen' => mc_oturum_id,
-                            'resim' => $_POST['kapak_' . $dil],
-                            'eklenti' => $mc_json[$dil],
-                            'grup' => $dil_grup,
-                            'dil' => $dil
-                        ]
-                    ])['sonuc'];
+            $kayit_verileri['ekleyen'] = mc_oturum_id;
+            $mc_kaydet = $m_vt->ekle([ 'table' => $mc_modul_ayar['tablo'], 'values' => $kayit_verileri ])['sonuc'];
         } else {
-            $mc_kaydet = $m_vt->guncelle([
-                        'table' => $mc_modul_ayar['tablo'],
-                        'values' => [
-                            'baslik' => $_POST['baslik'][$dil],
-                            'sef' => $_POST['sef'][$dil],
-                            'icerik' => $_POST['m_editor_' . $dil],
-                            'tip' => $_POST['kategori'][$dil],
-                            'ust' => $_POST['sayfa'][$dil],
-                            'durum' => $_POST['yayin'][$dil],
-                            'menu' => $_POST['menu'][$dil],
-                            'duzenleyen' => mc_oturum_id,
-                            'resim' => $_POST['kapak_' . $dil],
-                            'eklenti' => $mc_json[$dil],
-                            'grup' => $dil_grup,
-                            'dil' => $dil
-                        ],
-                        'where' => ['id' => $id]
-                    ])['sonuc'];
+            $kayit_verileri['duzenleyen'] = mc_oturum_id;
+            $mc_kaydet = $m_vt->guncelle(['table' => $mc_modul_ayar['tablo'], 'values' => $kayit_verileri, 'where' => ['id' => $id] ])['sonuc'];
         }
-        if (!$mc_kaydet) {
-            break;
-        }
+        if (!$mc_kaydet) { break; }
+        
     }
-
     if ($mc_kaydet) {
         mc_uyari(-1, "<b>" . mc_dil('basarili') . "</b>Sayfa düzenlendi");
     } else {
@@ -171,28 +109,16 @@ if (!isset($_GET['id'])) {
     exit;
 }
 
-$get_sayfa = $m_vt->select()->from($mc_modul_ayar['tablo'])->where("id", $_GET['id'])->result();
-if (!count($get_sayfa)) {
-    exit;
-}
-$mc_title = mc_dil('duzenle') . ": " . $get_sayfa[0]->baslik;
-
-$get_sayfalar = array();
-if ($get_sayfa[0]->grup == 0) {
-    $sorgu_sayfalar = $m_vt->select()->from($mc_modul_ayar['tablo'])->where("id", $get_sayfa[0]->id)->result();
-} else {
-    $sorgu_sayfalar = $m_vt->select()->from($mc_modul_ayar['tablo'])->where("grup", $get_sayfa[0]->grup)->orderby('id', "ASC")->result();
-}
-foreach ($sorgu_sayfalar as $sorgu_sayfa) {
-    if (isset($get_sayfalar[$sorgu_sayfa->dil])) {
-        continue;
+$sorgu_sayfalar = $m_vt->select("`dil`")->from($mc_modul_ayar['tablo'])->where("grup", $_GET['id'])->orderby('id',"ASC")->group(true,false);
+if(!count($sorgu_sayfalar)){ m_git('ekle.php'); }
+$first_key = array_keys($sorgu_sayfalar)[0];
+foreach ($mt_diller as $dil => $tanim) {
+    if(empty($sorgu_sayfalar[$dil])){
+        $sorgu_sayfalar[$dil] = new StdClass();
+        foreach ($sorgu_sayfalar[$first_key] as $key => $value) {
+            $sorgu_sayfalar[$dil]->{$key} = is_numeric($value)?0:null;
+        }
     }
-    if (empty($sorgu_sayfa->dil)) {
-        $sorgu_sayfa->dil = "tr";
-    }
-    $get_sayfalar[$sorgu_sayfa->dil] = $sorgu_sayfa;
 }
 
-if (!isset($_GET['id'])) {
-    exit;
-}
+$mc_title = mc_dil('duzenle') . ": " . $sorgu_sayfalar[$first_key]->baslik;

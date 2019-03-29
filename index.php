@@ -9,7 +9,7 @@ error_reporting(0);
  * 1 | TRUE     : Otomatik İşlemler ve Ek Ayarlar
  * 2            : Otomatik İşlemler, Ek Ayarlar ve Hata Raporları
  */
-define("m_gelistirici", 0);
+define("m_gelistirici", 2);
 
 if (m_gelistirici > 0) {
     $m_iz = explode(" ", microtime());

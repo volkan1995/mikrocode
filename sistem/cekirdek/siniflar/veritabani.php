@@ -119,13 +119,13 @@ class m_select{
         if($this->sart != null){ $this->sart = " WHERE ".$this->sart; }
         if($this->syc > 0){ for ($i = 0; $i < $this->syc; $i++) { $this->sart .= " )"; } }
         if($print){
-            echo "SELECT ".$this->columns." FROM ".$this->frm.$this->sart.$this->grb.$this->orb.$this->lmt;
+            echo "SELECT {$this->columns} FROM ".$this->frm.$this->sart.$this->grb.$this->orb.$this->lmt;
             echo "<br/><pre>";
             print_r($this->veriler);
             echo "</pre>";
             exit;
         }else{
-            return array('q' => "SELECT ".$this->columns." FROM ".$this->frm.$this->sart.$this->grb.$this->orb.$this->lmt, 'v' => $this->veriler);
+            return array('q' => "SELECT {$this->columns} FROM ".$this->frm.$this->sart.$this->grb.$this->orb.$this->lmt, 'v' => $this->veriler);
         }
     }
     
@@ -134,15 +134,32 @@ class m_select{
         if($this->durum == null){
             if($this->sart != null){ $this->sart = " WHERE ".$this->sart; }
             if($this->syc > 0){ for ($i = 0; $i < $this->syc; $i++) { $this->sart .= " )"; } }
-            $sorgu = $this->baglan->prepare("SELECT ".$this->columns." FROM ".$this->frm.$this->sart.$this->grb.$this->orb.$this->lmt);
+            $sorgu = $this->baglan->prepare("SELECT {$this->columns} FROM ".$this->frm.$this->sart.$this->grb.$this->orb.$this->lmt);
             $sorgu->execute($this->veriler);
             if($sorgu && $sorgu->rowCount()>0){
-                if($obj){ return $sorgu->fetchAll(PDO::FETCH_OBJ); }
-                else{ return $sorgu->fetchAll(PDO::FETCH_ASSOC); }
+                if($obj){ return $sorgu->fetchAll(PDO::FETCH_OBJ); }else{ return $sorgu->fetchAll(PDO::FETCH_ASSOC); }               
             }else{ return array(); }
         }else{
-            echo "<p class='col-red'><b><i>SELECT</i> Sorgusu Hatası</b><br/></p><p class='m-t-5'>".$this->durum."</p>";
-            exit;
+            exit("<p class='col-red'><b><i>SELECT</i> Sorgusu Hatası</b><br/></p><p class='m-t-5'>{$this->durum}</p>");
+        }
+    }
+    
+    public function group($obj = true, $grup = true){
+        if($this->frm == null){ $this->durum = "Tablo ismi girilmesi gerekiyor"; }        
+        if($this->durum == null){
+            if($this->sart != null){ $this->sart = " WHERE ".$this->sart; }
+            if($this->syc > 0){ for ($i = 0; $i < $this->syc; $i++) { $this->sart .= " )"; } }
+            $sorgu = $this->baglan->prepare("SELECT {$this->columns}, " . str_replace("`","",$this->frm) . ".* FROM ".$this->frm.$this->sart.$this->grb.$this->orb.$this->lmt);
+            $sorgu->execute($this->veriler);
+            if($sorgu && $sorgu->rowCount()>0){  
+                if($grup){
+                    if($obj){ return $sorgu->fetchAll(PDO::FETCH_GROUP|PDO::FETCH_OBJ); }else{ return $sorgu->fetchAll(PDO::FETCH_GROUP|PDO::FETCH_ASSOC); } 
+                }else{
+                    if($obj){ return $sorgu->fetchAll(PDO::FETCH_UNIQUE|PDO::FETCH_OBJ); }else{ return $sorgu->fetchAll(PDO::FETCH_UNIQUE|PDO::FETCH_ASSOC); } 
+                }           
+            }else{ return array(); }
+        }else{
+            exit("<p class='col-red'><b><i>SELECT</i> Sorgusu Hatası</b><br/></p><p class='m-t-5'>{$this->durum}</p>");
         }
     }
     
@@ -151,12 +168,11 @@ class m_select{
         if($this->durum == null){
             if($this->sart != null){ $this->sart = " WHERE ".$this->sart; }
             if($this->syc > 0){ for ($i = 0; $i < $this->syc; $i++) { $this->sart .= " )"; } }
-            $sorgu = $this->baglan->prepare("SELECT COUNT(`id`) as m_toplam FROM ".$this->frm.$this->sart.$this->grb.$this->orb.$this->lmt);
+            $sorgu = $this->baglan->prepare("SELECT COUNT(*) as m_toplam FROM ".$this->frm.$this->sart.$this->grb.$this->orb.$this->lmt);
             $sorgu->execute($this->veriler);
             if($sorgu && $sorgu->rowCount()>0){ return $sorgu->fetchAll(PDO::FETCH_OBJ)[0]->m_toplam; }else{ return 0; }
         }else{
-            echo "<p class='col-red'><b><i>SELECT</i> Sorgusu Hatası</b><br/></p><p class='m-t-5'>".$this->durum."</p>";
-            exit;
+           exit("<p class='col-red'><b><i>SELECT</i> Sorgusu Hatası</b><br/></p><p class='m-t-5'>{$this->durum}</p>");
         }
     }
     
@@ -167,7 +183,7 @@ class m_select{
             if($this->syc > 0){ for ($i = 0; $i < $this->syc; $i++) { $this->sart .= " )"; } }
             if($this->frm == "`dosyalar`"){
                 $sorgusil = false;
-                $sorgu = $this->baglan->prepare("SELECT * FROM ".$this->frm.$this->sart.$this->lmt);
+                $sorgu = $this->baglan->prepare("SELECT `id` FROM ".$this->frm.$this->sart.$this->lmt);
                 $sorgu->execute($this->veriler);
                 if($sorgu && $sorgu->rowCount()>0){
                     $sorgusil = true;
@@ -187,8 +203,7 @@ class m_select{
             }
             if($sorgusil){ return true; }
         }else{
-            echo "<p class='col-red'><b><i>DELETE</i> Sorgusu Hatası</b><br/></p><p class='m-t-5'>".$this->durum."</p>";
-            exit;
+            exit("<p class='col-red'><b><i>DELETE</i> Sorgusu Hatası</b><br/></p><p class='m-t-5'>{$this->durum}</p>");
         }
         return false;
     }
@@ -281,7 +296,7 @@ class m_baglan{
         if(is_array($sorgu) && isset($sorgu['table']) && isset($sorgu['values']) && is_array($sorgu['values']) && isset($sorgu['where']) && is_array($sorgu['where'])){
             $sql1 = null;
             foreach ($sorgu['values'] as $column => $value) {
-                $sql1 .= "`".str_replace(["`","'",'"','.'],"",$column)."` = :$column, ";
+                $sql1 = $sql1 . "`".str_replace(["`","'",'"','.'],"",$column)."` = :$column, ";
             }
             $where_key = null;
             $where_val = null;
@@ -329,6 +344,9 @@ class m_baglan{
                     break;  
                 case "FETCH_BOTH":
                     return $sorgu->fetchAll(PDO::FETCH_BOTH);
+                    break; 
+                case "FETCH_GROUP":
+                    return $sorgu->fetchAll(PDO::FETCH_GROUP);
                     break;  
                 default:
                     return $sorgu->fetchAll(PDO::FETCH_OBJ);
@@ -393,8 +411,7 @@ class m_baglan{
                 }
             }else{
                 $return['sonuc'] = true;
-            }
-            
+            }            
         }
         return $return;
     }

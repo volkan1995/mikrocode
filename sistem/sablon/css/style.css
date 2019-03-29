@@ -66,8 +66,8 @@ input:-webkit-autofill{-webkit-animation-name:autofill;-webkit-animation-fill-mo
 .mc_dosyabtn_switch{position: absolute;right: 0;top: -3px; z-index: 1;}
 .file_loader{position:absolute;top:0;left:0;right:0;bottom:0;z-index:1;text-align:center;padding-top:70px;display:none}
 .mc_ds{display:inline-block;padding:2px 0 5px 0;overflow:hidden}
-.mc_ds #mcd_secililer{text-align: center;margin: 0 auto;display: table;padding: 0; position: relative}
-.index_widget:after, .mc_ds #mcd_secililer:after{content:"";display:block;clear:both}
+.mc_ds .mcd_secililer{text-align: center;margin: 0 auto;display: table;padding: 0; position: relative}
+.index_widget:after, .mc_ds .mcd_secililer:after{content:"";display:block;clear:both}
 .mc_ds .mcd_secili{float:left;position:relative;width:215px;max-width: 100%;padding-top: 5px;min-height: 120px}
 .mc_ds .mcd_secili .mc_apl{margin: 29px 0 5px 0;border-top: 0; border-radius: 0}
 .mc_sw_b80{width: 100px;float: left}
@@ -76,7 +76,8 @@ input:-webkit-autofill{-webkit-animation-name:autofill;-webkit-animation-fill-mo
 .mcd_gd > button{width:100%;padding:2px 4px}
 .mcd_gd > div{background-color:#fff;padding:5px;float: left;width: 215px}
 .indir{cursor: pointer}
-.multi-lang-save-li{ margin-right: 15px; padding-top: 3px; min-width: 100px; }
+li.multi-lang-save-li{ padding-top: 3px; float: right;}
+li.multi-lang-copy-li{ margin-right: 20px; padding-top: 7px; float: right; }
 .body_editor{padding: 0!important}
 .body_editor .ace_editor{height: 450px;border-radius: 0;border: 0;margin: 0}
 #mc_tema_isim_yaz{padding-left: 10px;font-size: .75em;color: #888}
