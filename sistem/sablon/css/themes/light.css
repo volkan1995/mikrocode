@@ -127,3 +127,7 @@ h1 small,h2 small,h3 small,h4 small,h5 small,h6 small,.h1 small,.h2 small,.h3 sm
 .btn-primary:hover, .btn-primary:focus, .btn-primary.focus{
     color: #fff;
 }
+.dd3-content{border:1px dashed #ccc;background:#fff;}
+.mc_surukleb_placeholder{border:2px dashed #ccc;background-color: rgba(200,200,200,.2)}
+.dd-placeholder,.dd-empty{background:#f2fbff}
+.dd-empty{border:1px dashed #bbb;background-color:#e5e5e5}

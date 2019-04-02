@@ -30,7 +30,6 @@ require mc_siniflar . "index.php";
 
 require m_cekirdek . "panel" . DIRECTORY_SEPARATOR . "kullanici.php";
 
-$mt_diller = array();
 if (file_exists(m_tema . "lang" . DIRECTORY_SEPARATOR . "index.php")) {
     include m_tema . "lang" . DIRECTORY_SEPARATOR . "index.php";
 }

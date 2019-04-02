@@ -15,16 +15,16 @@ require '..' . DIRECTORY_SEPARATOR . 'loader.php';
                             <li class="multi-lang-save-li"><button type="submit" class="btn btn-lg bg-grey waves-effect btn-block">Kaydet</button></li>
                             <?php
                             $dil_tf = true;
-                            foreach ($mt_diller as $dil => $tanimlar) {
-                                if (empty($tanimlar['dil'])) {
-                                    unset($mt_diller[$dil]);
+                            foreach ($m_diller as $dil => $tanimlar) {
+                                if (empty($tanimlar->baslik)) {
+                                    unset($m_diller[$dil]);
                                     continue;
                                 }
                                 if ($dil_tf) {
-                                    echo '<li role="presentation" class="active"><a href="#form_' . $dil . '" data-toggle="tab" aria-expanded="true"><img src="' . mc_img . '/ulke/' . $dil . '.png" style="height: 14px;margin-right: 5px;">' . $tanimlar['dil'] . '</a></li>';
+                                    echo '<li role="presentation" class="active"><a href="#form_' . $dil . '" data-toggle="tab" aria-expanded="true"><img src="' . mc_img . '/ulke/' . $dil . '.png" style="height: 14px;margin-right: 5px;">' . $tanimlar->baslik . '</a></li>';
                                     $dil_tf = false;
                                 } else {
-                                    echo '<li role="presentation"><a href="#form_' . $dil . '" data-toggle="tab" aria-expanded="false"><img src="' . mc_img . '/ulke/' . $dil . '.png" style="height: 14px;margin-right: 5px;">' . $tanimlar['dil'] . '</a></li>';
+                                    echo '<li role="presentation"><a href="#form_' . $dil . '" data-toggle="tab" aria-expanded="false"><img src="' . mc_img . '/ulke/' . $dil . '.png" style="height: 14px;margin-right: 5px;">' . $tanimlar->baslik . '</a></li>';
                                 }
                             }
                             ?>
@@ -32,7 +32,7 @@ require '..' . DIRECTORY_SEPARATOR . 'loader.php';
                         <div class="tab-content">
                             <?php
                             $dil_tf = true;
-                            foreach ($mt_diller as $dil => $tanimlar) {
+                            foreach ($m_diller as $dil => $tanimlar) {
                                 if ($dil_tf) {
                                     echo '<div role="tabpanel" class="row tab-pane fade active in" id="form_' . $dil . '">';
                                     $dil_tf = false;

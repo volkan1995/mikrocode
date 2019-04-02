@@ -16,8 +16,8 @@ if (isset($this->dil)) {
             $this->dil = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"], 0, 2);
         }
         
-        if(!isset($mt_diller[$this->dil])){
-            $this->dil = array_keys($mt_diller)[0];
+        if(!isset($m_diller[$this->dil])){
+            $this->dil = array_keys($m_diller)[0];
         }
         
     }else{

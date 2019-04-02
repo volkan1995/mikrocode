@@ -7,7 +7,7 @@
         $mc_kategoriler->sirala = true;
         $mc_kategoriler->sekme = $mc_modul_ayar['sirala_sekme'];
         $mc_kategoriler->veriler = ['table' => $mc_modul_ayar['tablo'],'where' => ['kategori' => 0,'tip' => $mc_modul_ayar['tip']], 'orderby' => "sira, id"];
-        if (!empty($mt_diller) && !empty($_GET['filtre_dil'])) {
+        if (!empty($m_diller) && !empty($_GET['filtre_dil'])) {
             $mc_kategoriler->veriler = ['table' => $mc_modul_ayar['tablo'],'where' => ['kategori' => 0, 'dil' => $_GET['filtre_dil'], 'tip' => $mc_modul_ayar['tip']], 'orderby' => "sira, id"];
         } else {
             $mc_kategoriler->veriler = ['table' => $mc_modul_ayar['tablo'],'where' => ['kategori' => 0,'tip' => $mc_modul_ayar['tip']], 'orderby' => "sira, id"];
@@ -28,16 +28,16 @@
                     <div class="m-b-10">
                         <select name="filtre_dil" class="form-control show-tick filtre_dil">
                             <?php
-                            if (!empty($mt_diller)) {
-                                foreach ($mt_diller as $dil => $tanimlar) {
-                                    if (!isset($tanimlar['dil'])) {
+                            if (!empty($m_diller)) {
+                                foreach ($m_diller as $dil => $tanimlar) {
+                                    if (!isset($tanimlar->baslik)) {
                                         continue;
                                     }
                                     if ($_GET['filtre_dil'] == $dil) {
-                                        echo '<option value="' . $dil . '" selected>' . $tanimlar['dil'] . '</option>';
+                                        echo '<option value="' . $dil . '" selected>' . $tanimlar->baslik . '</option>';
                                         continue;
                                     }
-                                    echo '<option value="' . $dil . '">' . $tanimlar['dil'] . '</option>';
+                                    echo '<option value="' . $dil . '">' . $tanimlar->baslik . '</option>';
                                 }
                             }
                             ?>

@@ -7,7 +7,7 @@ if (isset($_POST['kaydet'])) {
     
     mc_yetki($mc_modul_ayar['yetki'], 2);   
     
-    if (!isset($_POST['diller'])) {
+    if (empty($_POST['diller'])) {
         $_POST['diller']['tr'] = $_POST;
     }
     
@@ -66,18 +66,21 @@ if (isset($_POST['kaydet'])) {
         $mc_json = array();
         
         if (!empty($_POST['video'])) {  $mc_json['video'] = $_POST['video']; }            
-        if (isset($_POST['ek']) && !empty($_POST['ek'])) { $mc_json['ek'] = $_POST['ek']; }
-        if (isset($_POST['galeri']) && !empty($_POST['galeri'])) {
+        if (!empty($_POST['ek']) && is_array($_POST['galeri'])) {
+            $mc_json['ek_ek'] = $_POST['ek'];
+            $mc_json['ek'] = array_keys($mc_json['ek_ek']);             
+        }
+        if (!empty($_POST['galeri']) && is_array($_POST['galeri'])) {
             $mc_json['galeri_ek'] = $_POST['galeri'];
-            $mc_json['galeri'] = array_keys($mc_json['galeri']);            
+            $mc_json['galeri'] = array_keys($mc_json['galeri_ek']);            
         }
         
         if ($_POST['kategori'] == "yonlendir" && isset($_POST['sekme'])) { $mc_json['sekme'] = $_POST['sekme']; }
         
         $kayit_verileri = array(
-            'baslik' => $_POST['baslik'],
+            'baslik' => m_html_chars($_POST['baslik'], 'enc'),
             'sef' => $_POST['sef'],
-            'icerik' => $_POST['icerik'],
+            'icerik' => m_html_chars($_POST['icerik'], 'enc'),
             'tip' => $_POST['kategori'],
             'ust' => $_POST['sayfa'],
             'durum' => $_POST['yayin'],
@@ -109,10 +112,16 @@ if (!isset($_GET['id'])) {
     exit;
 }
 
-$sorgu_sayfalar = $m_vt->select("`dil`")->from($mc_modul_ayar['tablo'])->where("grup", $_GET['id'])->orderby('id',"ASC")->group(true,false);
-if(!count($sorgu_sayfalar)){ m_git('ekle.php'); }
+$sorgu_sayfa = $m_vt->select("grup")->from($mc_modul_ayar['tablo'])->where("id", $_GET['id'])->result();
+if(!count($sorgu_sayfa)){
+    mc_uyari(-3, "<b>" . mc_dil('basarisiz') . "</b>İçerik kaydı bulunamadı.");
+}
+$sorgu_sayfalar = $m_vt->select("`dil`")->from($mc_modul_ayar['tablo'])->where("grup", $sorgu_sayfa[0]->grup)->orderby('id',"ASC")->group(true,false);
+if(!count($sorgu_sayfalar)){
+   mc_uyari(-3, "<b>" . mc_dil('basarisiz') . "</b>İçerik grubu kaydı bulunamadı.");
+}
 $first_key = array_keys($sorgu_sayfalar)[0];
-foreach ($mt_diller as $dil => $tanim) {
+foreach ($m_diller as $dil => $tanim) {
     if(empty($sorgu_sayfalar[$dil])){
         $sorgu_sayfalar[$dil] = new StdClass();
         foreach ($sorgu_sayfalar[$first_key] as $key => $value) {

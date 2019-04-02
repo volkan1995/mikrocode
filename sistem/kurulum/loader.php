@@ -1,11 +1,11 @@
 <?php
     require m_sistem."diller/index.php";
     
-    @date_default_timezone_set($mc_diller->{$mc_dil}->timezone);
+    @date_default_timezone_set($mc_diller[$mc_dil]['timezone']);
     
-    @setlocale(LC_TIME, $mc_diller->{$mc_dil}->lc_time);
+    @setlocale(LC_TIME, $mc_diller[$mc_dil]['lc_time']);
     
-    @setlocale(LC_ALL, $mc_diller->{$mc_dil}->lc_all);
+    @setlocale(LC_ALL, $mc_diller[$mc_dil]['lc_all']);
     
     if((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS']!=='off') || $_SERVER['SERVER_PORT']==443){        
         $_SERVER['HTTPS'] = 'on';        

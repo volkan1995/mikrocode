@@ -1,5 +1,4 @@
 <?php
-
 if(!defined('m_guvenlik')) { define("m_guvenlik", true); }
 
 require $_SERVER["DOCUMENT_ROOT"].DIRECTORY_SEPARATOR.'index.php';
@@ -86,7 +85,11 @@ if(isset($_POST['mc_ceviri'])){
                 if(isset($responseDecoded['data'])){
                     return $responseDecoded['data']['translations'][0]['translatedText'];
                 }else{
-                    return null;
+                    if(isset($responseDecoded['error']['code'])){
+                        return "(".$responseDecoded['error']['code'].") ".$responseDecoded['error']['message'];
+                    }else{
+                        return null;
+                    }                    
                 }
             }
         }
@@ -105,7 +108,7 @@ $dil_indexknm = m_domain."/sistem/diller/dilceviri/index.php";
 ?>
 <html>
     <head>
-        <script src="<?=m_domain?>/sistem/sablon/plugins/jquery/jquery.js" type="text/javascript"></script>
+        <script src="<?=m_domain?>/sistem/sablon/plugins/jquery/jquery.min.js" type="text/javascript"></script>
         <style>
             body {background-color: #fefefe;}
             .satirdil { line-height: 20px; color: #333; }

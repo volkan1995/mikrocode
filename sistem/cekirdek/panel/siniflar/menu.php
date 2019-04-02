@@ -81,6 +81,7 @@ class mc_menu {
                             ['baslik' => "smtp_mail_ayarlari", 'ikon' => "email", 'gorev' => "ayarlar/#smtp_mail_ayarlari", 'admin' => true],
                             ['baslik' => "izin_ayarlari", 'ikon' => "security", 'gorev' => "ayarlar/#izin_ayarlari", 'admin' => true],
                             ['baslik' => "zamanlanmis_gorevler", 'ikon' => "access_time", 'gorev' => "ayarlar/#zamanlanmis_gorevler", 'gelistirici' => true, 'admin' => true],
+                            ['baslik' => "diller", 'ikon' => "translate", 'gorev' => "ayarlar/#diller", 'admin' => true],
                             ['baslik' => "guncellestirmeler_ve_bilgi", 'ikon' => "update", 'gorev' => "ayarlar/#guncellestirmeler_ve_bilgi", 'admin' => true]
                         ]
                     ],

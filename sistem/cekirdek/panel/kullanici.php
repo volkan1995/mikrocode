@@ -76,7 +76,7 @@ if (isset($_SESSION['kullanici']['id']) && isset($_SESSION['kullanici']['sifre']
         $mc_oturum->tema['renk'] = $mc_oturum_def['renk'];
     }
 
-    if (isset($mc_diller->{$mc_oturum->tema['dil']})) {
+    if (isset($mc_diller[$mc_oturum->tema['dil']])) {
         $_SESSION['dil'] = $mc_oturum->tema['dil'];
         $_COOKIE["kullanici_dil"] = $mc_oturum->tema['dil'];
     } else {

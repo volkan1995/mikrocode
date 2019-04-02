@@ -38,10 +38,13 @@ if (isset($_POST['kaydet'])) {
         $mc_json = array();
         
         if (!empty($_POST['video'])) {  $mc_json['video'] = $_POST['video']; }            
-        if (isset($_POST['ek']) && !empty($_POST['ek'])) { $mc_json['ek'] = $_POST['ek']; }
-        if (isset($_POST['galeri']) && !empty($_POST['galeri'])) {
+        if (!empty($_POST['ek']) && is_array($_POST['galeri'])) {
+            $mc_json['ek_ek'] = $_POST['ek'];
+            $mc_json['ek'] = array_keys($mc_json['ek_ek']);             
+        }
+        if (!empty($_POST['galeri']) && is_array($_POST['galeri'])) {
             $mc_json['galeri_ek'] = $_POST['galeri'];
-            $mc_json['galeri'] = array_keys($mc_json['galeri']);            
+            $mc_json['galeri'] = array_keys($mc_json['galeri_ek']);            
         }
         
         if ($_POST['kategori'] == "yonlendir" && isset($_POST['sekme'])) { $mc_json['sekme'] = $_POST['sekme']; }
@@ -49,9 +52,9 @@ if (isset($_POST['kaydet'])) {
         $mc_kaydet = $m_vt->ekle([
             'table' => $mc_modul_ayar['tablo'],
             'values' => [
-                'baslik' => $_POST['baslik'],
+                'baslik' => m_html_chars($_POST['baslik'], 'enc'),
                 'sef' => $_POST['sef'],
-                'icerik' => $_POST['icerik'],
+                'icerik' => m_html_chars($_POST['icerik'], 'enc'),
                 'tip' => $_POST['kategori'],
                 'ust' => $_POST['sayfa'],
                 'durum' => $_POST['yayin'],

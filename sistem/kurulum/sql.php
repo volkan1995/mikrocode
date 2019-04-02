@@ -125,8 +125,14 @@ $mc_sql[$mc_tablolar[9]]['alici'] = "VARCHAR(255) DEFAULT NULL";
 $mc_sql[$mc_tablolar[9]]['ip'] = "VARCHAR(20) DEFAULT NULL";
 $mc_sql[$mc_tablolar[9]]['tarih'] = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP";
 
-$mc_tablolar[10] = "bildirimler";
+$mc_tablolar[10] = "diller";
 $mc_sql[$mc_tablolar[10]]['baslik'] = "VARCHAR(255) DEFAULT NULL";
+$mc_sql[$mc_tablolar[10]]['durum'] = "TINYINT(2) NULL DEFAULT 0";
+$mc_sql[$mc_tablolar[10]]['sef'] = "VARCHAR(6) DEFAULT NULL";
+$mc_sql[$mc_tablolar[10]]['timezone'] = "VARCHAR(255) DEFAULT NULL";
+$mc_sql[$mc_tablolar[10]]['lc_time'] = "VARCHAR(255) DEFAULT NULL";
+$mc_sql[$mc_tablolar[10]]['lc_all'] = "VARCHAR(255) DEFAULT NULL";
+$mc_sql[$mc_tablolar[10]]['hizala'] = "TINYINT(2) NULL DEFAULT 0";
 $mc_sql[$mc_tablolar[10]]['tarih'] = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP";
 
 $mc_tablolar[11] = "eklentiler";

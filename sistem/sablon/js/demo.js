@@ -26,6 +26,9 @@ $(".nav > li.multi-lang-copy-li").click(function () {
         for (var i = 0; i < secili_field.find('input').length; i++) {
             var secili_input = secili_field.find('input').eq(i);
             var diger_input = diger_field.find('input').eq(i);
+            if(secili_input.data("skipcopy") || diger_input.data("skipcopy")){
+                continue;
+            }
             if (secili_input.attr('type') == "checkbox" || secili_input.attr('type') == "radio") {
                 diger_input.prop('checked', secili_input.prop('checked'));
             } else {
@@ -101,6 +104,8 @@ if($('#content-form, .oto-form').length > 0){
                     });
                 }
                 this_fieldset.find("*:not(div)[name]").each(function () {
+                    $(this).attr('data-oldname', $(this).attr('name'));
+                    $(this).data('oldname', $(this).attr('name'));
                     $(this).attr('name', "diller[" + data_dil + "][" + $(this).attr('name') + "]");
                 });
                 if (this_fieldset.find(".m_editor").length > 0) {
