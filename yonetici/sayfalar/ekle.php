@@ -13,18 +13,18 @@ require '..' . DIRECTORY_SEPARATOR . 'loader.php';
                     <div class="body">
                         <ul class="nav nav-tabs m-b-10" role="tablist">
                             <?php
-                            foreach ($mt_diller as $dil => $tanimlar) {
-                                if (empty($tanimlar['dil'])) {
+                            foreach ($m_diller as $dil => $tanimlar) {
+                                if (empty($tanimlar->baslik)) {
                                     continue;
                                 }
-                                echo '<li><a href="#form_' . $dil . '" data-toggle="tab" aria-expanded="false"><img src="' . mc_img . '/ulke/' . $dil . '.png" style="height: 14px;margin-right: 5px;">' . $tanimlar['dil'] . '</a></li>';
+                                echo '<li><a href="#form_' . $dil . '" data-toggle="tab" aria-expanded="false"><img src="' . mc_img . '/ulke/' . $dil . '.png" style="height: 14px;margin-right: 5px;">' . $tanimlar->baslik . '</a></li>';
                             }
                             ?>
                             <li class="multi-lang-save-li"><button type="submit" class="btn btn-lg btn-theme waves-effect btn-block">Kaydet</button></li>
                             <li class="multi-lang-copy-li"><span type="submit" class="btn btn-circle-xs btn-link waves-effect"><i class="material-icons">swap_horiz</i></span></li>
                         </ul>
                         <div class="tab-content">
-                            <?php foreach ($mt_diller as $dil => $tanimlar) { ?>
+                            <?php foreach ($m_diller as $dil => $tanimlar) { ?>
                                 <fieldset role="tabpanel" data-dil="<?= $dil ?>" class="row tab-pane fade" id="form_<?= $dil ?>">
                                     <div class="col-md-9 col-sm-8 col-xs-12">
                                         <div class="form-group">

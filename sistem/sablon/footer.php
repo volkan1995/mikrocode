@@ -1,4 +1,7 @@
 <?php
+if(!count($m_diller)){
+    mc_uyari(3, "<b>".mc_dil('uyari')."</b>Lütfen en az bir dil seçiniz");
+}
 if (!isset($_POST['mc_js'])) {
     echo '</div><div id="post_sonuc" style="display:inherit"></div>';
     if ($mc_muzikcalar) {

@@ -15,8 +15,8 @@
     
     $mc_title = mc_dil($mc_modul_ayar['sirala']);
     
-    if (!empty($mt_diller)) {
+    if (!empty($m_diller)) {
         if(empty($_GET['filtre_dil'])){
-            $_GET['filtre_dil'] = array_keys($mt_diller)[0];
+            $_GET['filtre_dil'] = array_keys($m_diller)[0];
         }
     }

@@ -135,6 +135,9 @@ a.list-group-item, button.list-group-item {color: #ddd}
 ul.lsx-emojipicker-tabs {background-color: #222!important;border-top: 1px solid #444!important;}
 .lsx-emojipicker-container:after {border-color: #222222 transparent transparent transparent !important;}
 ul.lsx-emojipicker-tabs li.selected { border-bottom: 2px solid #444 !important;}
+.dd3-content {border: 1px dashed #222;background: #252525;}
+.mc_surukleb_placeholder{border:2px dashed #222;background-color: rgba(55,55,55,.2)}
+.dd-placeholder,.dd-empty{border:1px dashed #383838;background-color:#444}
 .panel-group .panel-heading + .panel-collapse > .panel-body, .panel-group .panel-heading + .panel-collapse > .list-group {
     border-top: 1px solid #444;
 }

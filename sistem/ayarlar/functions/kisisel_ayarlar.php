@@ -19,7 +19,7 @@
     
     $guncelle_values = array();
     
-    if(isset($_POST['secili_dil']) && isset($mc_diller->{$_POST['secili_dil']})){
+    if(isset($_POST['secili_dil']) && isset($mc_diller[$_POST['secili_dil']])){
         
         $mc_oturum->tema = m_jsonDegistir($mc_oturum->tema, "dil", $_POST['secili_dil']);
         

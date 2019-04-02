@@ -77,6 +77,7 @@ function mc_editor($t = "", $id = null) {
         $id = "m_editor" . rand(0, 9999999);
     }
     if (!empty($t)) {
+        $t = m_html_chars($t);
         $t = str_replace("'", "&#39;", $t);
     }
     if (!empty($t)) {

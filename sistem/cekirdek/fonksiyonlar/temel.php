@@ -135,6 +135,14 @@ function m_tirnak_temizle($v = null, $mod = 0) {
     }
 }
 
+function m_html_chars($v = null, $mod = 'decode') {
+    if ($mod == 'decode') {
+        return htmlspecialchars_decode($v, ENT_QUOTES);
+    } else {
+        return htmlspecialchars($v, ENT_QUOTES, 'UTF-8');;
+    }
+}
+
 function m_tarih($f = null, $t = 'now') {
     $z = date("$f", strtotime($t));
     $d = array(

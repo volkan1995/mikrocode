@@ -143,14 +143,16 @@ function mc_dosya_al($id = 0, $is = null, $dt = false) {
         foreach ($dosya_bul as $sira => $dosya) {
             $r .= '<li class="mc_surukleb_item mcd_secili_' . $dosya->id . '">';
             $r .= '<div class="mcd_secili">';
-            if ($dt != false) {
-                $r.='<div class="mcd_gd"><button class="btn btn-xs btn-default waves-effect" role="button" data-toggle="collapse" href="#mc_gdty' . $dosya->id . '" aria-expanded="false" aria-controls="mc_gdty' . $dosya->id . '">
-                        <i class="material-icons">drag_handle</i></button><div class="collapse" id="mc_gdty' . $dosya->id . '" aria-expanded="false">
+            if ($dt != false && !empty($dt->{$dosya->id})) {
+                $rand = rand(100,999);
+                $dt_r = $dt->{$dosya->id};
+                $r.='<div class="mcd_gd"><button class="btn btn-xs btn-default waves-effect" role="button" data-toggle="collapse" href="#mc_gdty' . $rand.$dosya->id . '" aria-expanded="false" aria-controls="mc_gdty' . $rand.$dosya->id . '">
+                        <i class="material-icons">drag_handle</i></button><div class="collapse" id="mc_gdty' . $rand.$dosya->id . '" aria-expanded="false">
                         <div class="form-group">
-                        <div class="form-line"><input type="text" class="form-control" style="margin-bottom:3px;" name="' . $is . '_b[]" placeholder="Başlık" value="' . (isset($dt['b'][$sira]) ? $dt['b'][$sira] : null) . '"/></div>
-                        <div class="form-line"><input type="text" class="form-control" style="margin-bottom:3px;" name="' . $is . '_a[]" placeholder="Açıklama" value="' . (isset($dt['a'][$sira]) ? $dt['a'][$sira] : null) . '"/></div>
-                        <div class="form-line"><input type="text" class="form-control" style="margin-bottom:3px;" name="' . $is . '_u[]" placeholder="Adres" value="' . (isset($dt['u'][$sira]) ? $dt['u'][$sira] : null) . '"/></div>
-                        <div class="form-line"><input type="text" class="form-control" name="' . $is . '_y[]" placeholder="Adres Yazısı" value="' . (isset($dt['y'][$sira]) ? $dt['y'][$sira] : null) . '"/></div>
+                        <div class="form-line"><input type="text" class="form-control" style="margin-bottom:3px;" name="'.$dosya->id.'][b" placeholder="Başlık" value="' . (!empty($dt_r->b) ? $dt_r->b : null) . '"/></div>
+                        <div class="form-line"><input type="text" class="form-control" style="margin-bottom:3px;" name="'.$dosya->id.'][a" placeholder="Açıklama" value="' . (!empty($dt_r->a) ? $dt_r->a : null) . '"/></div>
+                        <div class="form-line"><input type="text" class="form-control" style="margin-bottom:3px;" name="'.$dosya->id.'][u" placeholder="Adres" value="' . (!empty($dt_r->u) ? $dt_r->u : null) . '"/></div>
+                        <div class="form-line"><input type="text" class="form-control" name="'.$dosya->id.'][y" placeholder="Adres Yazısı" value="' . (!empty($dt_r->y) ? $dt_r->y : null) . '"/></div>
                         </div></div></div>';
             }
             $r.='<div class="mcd_baslik"><span title="' . $dosya->baslik . '">' . $dosya->baslik . '</span><i class="mcd_kapat material-icons">close</i></div>';
@@ -161,7 +163,7 @@ function mc_dosya_al($id = 0, $is = null, $dt = false) {
             } elseif ($dosya->tip == 3) {
                 $r .= '<audio preload="metadata" src="' . m_domain . '/dosyalar' . $dosya->konum . '">Desteklenmiyor</audio>';
             }
-            $r .= '<input type="hidden" class="mcd_values" name="' . $is . '[]" value="' . $dosya->id . '"/></div></li>';
+            $r .= '<input type="hidden" class="mcd_values" name="' . $is . '][' . $dosya->id . '" value="' . $dosya->id . '"/></div></li>';
         }
         return $r;
     } elseif ($id > 0) {

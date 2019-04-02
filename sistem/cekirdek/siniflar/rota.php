@@ -189,13 +189,9 @@ class m_rota {
             return true;
         }
         $mt_dil = null;
-        $mt_diller = array();
         if (!empty($this->dil)) {
             /* Dil desteği açılmış ise dil dosyasını aktar */     
-            if (file_exists($this->temaDizin . "lang" . DIRECTORY_SEPARATOR . "index.php")) {
-                include $this->temaDizin . "lang" . DIRECTORY_SEPARATOR . "index.php";
-                require mt_fonksiyonlar . "dil.php";
-            }
+            require mt_fonksiyonlar . "dil.php";
             if (file_exists($this->temaDizin . "lang" . DIRECTORY_SEPARATOR . $this->dil . ".php")) {
                 include $this->temaDizin . "lang" . DIRECTORY_SEPARATOR . $this->dil . ".php";                
             }else{

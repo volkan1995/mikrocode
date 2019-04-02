@@ -13,11 +13,11 @@ require '..' . DIRECTORY_SEPARATOR . 'loader.php';
                     <div class="body">
                         <ul class="nav nav-tabs m-b-10" role="tablist">
                             <?php
-                            foreach ($mt_diller as $dil => $tanimlar) {
-                                if (empty($tanimlar['dil'])) {
+                            foreach ($m_diller as $dil => $tanimlar) {
+                                if (empty($tanimlar->baslik)) {
                                     continue;
                                 }
-                                echo '<li><a href="#form_' . $dil . '" data-toggle="tab" aria-expanded="false"><img src="' . mc_img . '/ulke/' . $dil . '.png" style="height: 14px;margin-right: 5px;">' . $tanimlar['dil'] . '</a></li>';
+                                echo '<li><a href="#form_' . $dil . '" data-toggle="tab" aria-expanded="false"><img src="' . mc_img . '/ulke/' . $dil . '.png" style="height: 14px;margin-right: 5px;">' . $tanimlar->baslik . '</a></li>';
                             }
                             ?>
                             <li class="multi-lang-save-li"><button type="submit" class="btn btn-lg btn-theme waves-effect btn-block">Kaydet</button></li>
@@ -70,7 +70,7 @@ require '..' . DIRECTORY_SEPARATOR . 'loader.php';
                                         ?>
                                     </div>
                                     <div class="col-md-3 col-sm-4 col-xs-12">
-                                        <input type="hidden" name="id" value="<?= $sayfa->id ?>" />
+                                        <input type="hidden" name="id" data-skipcopy="true" value="<?= $sayfa->id ?>" />
                                         <div class="switch m-t-20">
                                             <b class="mc_sw_b80">Yayın</b>
                                             <label><input name="yayin" type="checkbox"<?= $sayfa->durum == 1 ? " checked" : null ?>/><span class="lever switch-col-theme"></span></label>

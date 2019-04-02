@@ -31,3 +31,5 @@ $mc_ps = intval(m_jsonAl($m_ayarlar->ayar, "mcps"));
 
 $m_site_sinir = m_jsonAl($m_ayarlar->ayar, "sinir_site", 10);
 $m_panel_sinir = m_jsonAl($m_ayarlar->ayar, "sinir_panel", 20);
+
+$m_diller = $m_vt->select('sef')->from('diller')->where('durum', 1)->group(true, false);
