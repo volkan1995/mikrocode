@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+    <ekler>
+        <index_banner_tr>Hoşgeldiniz</index_banner_tr>
+        <index_link_tr>Merhaba</index_link_tr>
+        <footer_text_tr>Hakkımızda</footer_text_tr>
+        
+        <index_banner_en>Welcome</index_banner_en>
+        <index_link_en>Hello</index_link_en>
+        <footer_text_en>About us</footer_text_en>
+        
+        <index_banner_fr>Bienvenue</index_banner_fr>
+        <index_link_fr>Bonjour</index_link_fr>
+        <footer_text_fr>A propos de nous</footer_text_fr>        
+        
+        <product_img>Ürün kapak resmi</product_img>
+        <contact_img>İletişim kapak resmi</contact_img>
+        <news_img>Haberler kapak resmi</news_img>
+        <catalogs_img>Kataloglar kapak resmi</catalogs_img>
+        <guide_img>Kılavuzlar kapak resmi</guide_img>
+        <chart_img>Şemalar kapak resmi</chart_img>
+        <qr_img>QR Okuma sayfası kapak resmi</qr_img>
+        
+        <logo1_tr>Üst Logo</logo1_tr>
+        <logo2_tr>Alt Logo</logo2_tr>
+        <logo3_tr>Menü Logo</logo3_tr>
+                
+    </ekler>
+</settings>
